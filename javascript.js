@@ -43,6 +43,8 @@ if (formContato) {
 }
 
 // ===== MENU HAMBÚRGUER =====
+
+
 const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');
 
@@ -63,6 +65,8 @@ if (menuToggle && navLinks) {
 }
 
 // ===== EASTER EGG: MENSAGEM NO CONSOLE =====
+
+
 console.log(
     '%c:: Você abriu o console. ::\n%cBem-vindo ao Void.\nNem todo dado é visível na superfície...',
     'color: #ff2eb4; font-size: 18px; font-weight: bold;',
@@ -70,6 +74,8 @@ console.log(
 );
 
 // ===== EASTER EGG: KONAMI CODE =====
+
+
 const voidSecreto = document.getElementById('void-secreto');
 
 if (voidSecreto) {
@@ -107,17 +113,17 @@ if (voidSecreto) {
 const terminalTexto = document.getElementById('terminal-texto');
 
 if (terminalTexto) {
-    const textoCompleto = `> Me chamo Tiarles, formado em Administração de Empresas, mas foi a tecnologia que realmente fez meu coração acelerar.
+    const textoCompleto = `> O CyberVoid nasceu de uma crença simples: tecnologia de qualidade não deveria ser privilégio de poucos.
 
-> Há cerca de um ano, troquei de rota: passei a estudar programação por conta própria, fascinado pela trajetória que vai de Turing e Ada Lovelace até os robôs humanoides e as inteligências artificiais de hoje.
-
-> O que mais me move é o impacto real dessa tecnologia: IAs que ajudam a descobrir novos medicamentos, preveem estruturas de proteínas e identificam tumores em exames de imagem anos antes de se tornarem críticos.
-
-> Acredito em um futuro onde essas ferramentas estejam ao alcance de todos — não só de poucos.
-
-> Estou no começo dessa jornada, aprendendo todos os dias e usando as próprias ferramentas de IA como aliadas no processo.
-
-> A CyberVoid Company nasce dessa mistura: paixão por tecnologia, vontade de aprender e compromisso de entregar projetos reais para quem precisa.`;
+    > Vivemos numa era em que a programação é uma das habilidades mais transformadoras do mundo, mas o acesso a bons recursos, mentores e comunidades ainda é desigual. O CyberVoid existe pra mudar isso.
+    
+    > Aqui você encontra um espaço aberto para tirar dúvidas, compartilhar ideias, descobrir livros, explorar projetos e evoluir junto com outros desenvolvedores, do iniciante ao experiente.
+    
+    > Acreditamos que o conhecimento cresce quando é compartilhado. Que uma dúvida respondida hoje pode ser o detalhe que muda a carreira de alguém amanhã.
+    
+    > Não importa de onde você vem, qual linguagem você usa ou em que nível está. Se você tem curiosidade e vontade de aprender, você pertence ao Void.
+    
+    > Bem-vindo à comunidade. Você está conectado.`;
 
     let indice = 0;
 
@@ -127,6 +133,7 @@ if (terminalTexto) {
             indice++;
     
             // Rola o terminal automaticamente acompanhando a digitação
+            
             const terminalCorpo = terminalTexto.parentElement;
             terminalCorpo.scrollTop = terminalCorpo.scrollHeight;
     
@@ -138,6 +145,8 @@ if (terminalTexto) {
 }
 
 // ===== NAVES ANIMADAS (FUNDO - PÁGINA SERVIÇOS) =====
+
+
 const navesContainer = document.getElementById('naves-container');
 
 if (navesContainer) {
