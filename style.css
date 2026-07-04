@@ -601,3 +601,112 @@ header, section, footer {
     position: relative;
     z-index: 1;
 }
+
+
+/* ===== MINI GAME: VOID RUNNER ===== */
+
+.void-runner-section {
+    padding: 80px 8%;
+    background:
+        radial-gradient(circle at top, rgba(255, 46, 180, 0.18), transparent 35%),
+        linear-gradient(180deg, var(--bg-section), var(--bg-dark));
+    border-top: 1px solid var(--borda);
+}
+
+.void-runner-container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.void-runner-info {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.void-runner-tag {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 6px 14px;
+    border: 1px solid var(--magenta);
+    color: var(--magenta);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.void-runner-info h2 {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    color: var(--texto-principal);
+}
+
+.void-runner-info p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--texto-secundario);
+    line-height: 1.7;
+}
+
+.game-panel {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid var(--borda);
+    border-radius: 18px;
+    background: rgba(10, 10, 20, 0.85);
+    box-shadow: 0 0 35px rgba(255, 46, 180, 0.12);
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: var(--texto-principal);
+    font-family: monospace;
+}
+
+#void-game {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    background:
+        linear-gradient(180deg, #080812 0%, #101020 65%, #05050a 100%);
+    border: 1px solid rgba(255, 46, 180, 0.25);
+}
+
+.game-controls {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.game-controls p {
+    margin-top: 12px;
+    color: var(--texto-secundario);
+    font-size: 0.95rem;
+}
+
+/* Responsividade do mini game */
+
+@media (max-width: 768px) {
+    .void-runner-section {
+        padding: 60px 6%;
+    }
+
+    .void-runner-info h2 {
+        font-size: 1.8rem;
+    }
+
+    .game-panel {
+        padding: 14px;
+    }
+
+    .game-header {
+        font-size: 0.9rem;
+    }
+
+    .game-controls p {
+        font-size: 0.85rem;
+    }
+}
