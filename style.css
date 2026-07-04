@@ -43,6 +43,8 @@ section {
 #header {
     background: linear-gradient(160deg, var(--bg-dark) 0%, #1a0f2e 100%);
     min-height: 100vh;
+    position: relative;
+    z-index: 10;
 }
 
 .navbar {
@@ -177,6 +179,8 @@ section {
 }
 
 /* ===== CONTATO ===== */
+
+
 #contato {
     background-color: transparent;
     position: relative;
@@ -230,6 +234,8 @@ footer {
 #header-pagina {
     background: linear-gradient(160deg, var(--bg-dark) 0%, #1a0f2e 100%);
     border-bottom: 1px solid var(--borda);
+    position: relative;
+    z-index: 10;
 }
 /* ===== MENSAGEM DE SUCESSO (CONTATO) ===== */
 #mensagem-sucesso {
@@ -258,6 +264,7 @@ footer {
     border: none;
     cursor: pointer;
     padding: 8px;
+    position: relative;
     z-index: 100;
 }
 
@@ -283,6 +290,8 @@ footer {
 }
 
 /* ===== RESPONSIVO: TELAS PEQUENAS (CELULAR) ===== */
+
+
 @media (max-width: 768px) {
     #menu-toggle {
         display: flex;
@@ -292,6 +301,7 @@ footer {
         position: fixed;
         top: 0;
         right: -100%;
+        z-index: 99;
         height: 100vh;
         width: 250px;
         background-color: var(--bg-section);
