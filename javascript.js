@@ -22,7 +22,9 @@ if (formContato) {
         })
         .then(function (dados) {
             if (dados.success) {
+
                 // Mostra a mensagem com efeito de fade in
+
                 mensagemSucesso.classList.add('mostrar');
 
                 // Limpa os campos do formulário
@@ -247,9 +249,7 @@ if (navesContainer) {
     }
 
     iniciarNaves();
-}
-
-
+} 
 // ===== MINI GAME: VOID RUNNER =====
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -258,12 +258,47 @@ document.addEventListener('DOMContentLoaded', function () {
     const scoreElemento = document.getElementById('void-score');
     const bestScoreElemento = document.getElementById('void-best-score');
 
-    // Só executa o jogo se o canvas existir na página atual
+    // Só executa o jogo se todos os elementos existirem na página atual.
+    // Isso evita erro nas páginas que não têm o mini game.
     if (!canvas || !botaoIniciar || !scoreElemento || !bestScoreElemento) {
         return;
     }
 
     const ctx = canvas.getContext('2d');
+
+    // ===== SPRITES DO VOID RUNNER =====
+    // Aqui carregamos as imagens reais do personagem.
+    // Elas precisam estar dentro da pasta:
+    // images/void-runner/
+
+    const spritesVoidRunner = {
+        idle: new Image(),
+        run01: new Image(),
+        run02: new Image(),
+        run03: new Image(),
+        jump: new Image(),
+        fall: new Image(),
+        slide: new Image()
+    };
+
+    spritesVoidRunner.idle.src = 'images/void-runner/idle.png';
+    spritesVoidRunner.run01.src = 'images/void-runner/run-01.png';
+    spritesVoidRunner.run02.src = 'images/void-runner/run-02.png';
+    spritesVoidRunner.run03.src = 'images/void-runner/run-03.png';
+    spritesVoidRunner.jump.src = 'images/void-runner/jump.png';
+    spritesVoidRunner.fall.src = 'images/void-runner/fall.png';
+    spritesVoidRunner.slide.src = 'images/void-runner/slide.png';
+
+    // Teste simples para avisar no console se o sprite principal carregou.
+    spritesVoidRunner.idle.onload = function () {
+        console.log('Sprite idle carregado com sucesso.');
+    };
+
+    spritesVoidRunner.idle.onerror = function () {
+        console.error('Erro ao carregar idle.png. Verifique o caminho: images/void-runner/idle.png');
+    };
+
+    // ===== VARIÁVEIS DO JOGO =====
 
     let jogoRodando = false;
     let gameOver = false;
@@ -276,14 +311,21 @@ document.addEventListener('DOMContentLoaded', function () {
     let melhorScore = localStorage.getItem('voidRunnerBestScore') || 0;
     bestScoreElemento.textContent = melhorScore;
 
+    // ===== JOGADOR =====
+    // Aqui você ajusta tamanho e posição do Void Runner.
+    // Se ele ficar grande demais, diminua largura e altura.
+    // Se ele ficar pequeno demais, aumente largura e altura.
+
     const jogador = {
-        x: 80,
-        y: 220,
-        largura: 34,
-        altura: 48,
+        x: 70,
+        y: 160,
+        largura: 100,
+        altura: 100,
         velocidadeY: 0,
         pulando: false
     };
+
+    // ===== FUNDO DO JOGO =====
 
     function desenharFundo() {
         ctx.fillStyle = '#080812';
@@ -316,18 +358,82 @@ document.addEventListener('DOMContentLoaded', function () {
         ctx.stroke();
     }
 
-    function desenharJogador() {
-        ctx.fillStyle = '#ff2eb4';
-        ctx.fillRect(jogador.x, jogador.y, jogador.largura, jogador.altura);
+    // ===== ESCOLHER SPRITE DO PERSONAGEM =====
+    // Essa função decide qual imagem usar:
+    // parado, correndo, pulando ou caindo.
 
-        // Olho/brilho do Void Runner
-        ctx.fillStyle = '#ffffff';
-        ctx.fillRect(jogador.x + 22, jogador.y + 12, 6, 6);
+    function escolherSpriteDoJogador() {
+        // Se estiver subindo, usa sprite de pulo.
+        if (jogador.velocidadeY < -1) {
+            return spritesVoidRunner.jump;
+        }
 
-        // Sombra
-        ctx.fillStyle = 'rgba(255, 46, 180, 0.25)';
-        ctx.fillRect(jogador.x - 4, jogador.y + jogador.altura, jogador.largura + 8, 4);
+        // Se estiver caindo, usa sprite de queda.
+        if (jogador.velocidadeY > 1) {
+            return spritesVoidRunner.fall;
+        }
+
+        // Se o jogo estiver rodando e ele estiver no chão, usa animação de corrida.
+        if (jogoRodando) {
+            const frameCorrida = Math.floor(frame / 8) % 3;
+
+            if (frameCorrida === 0) {
+                return spritesVoidRunner.run01;
+            }
+
+            if (frameCorrida === 1) {
+                return spritesVoidRunner.run02;
+            }
+
+            return spritesVoidRunner.run03;
+        }
+
+        // Antes de iniciar o jogo, usa sprite parado.
+        return spritesVoidRunner.idle;
     }
+
+    // ===== DESENHAR JOGADOR =====
+
+    function desenharJogador() {
+        const spriteAtual = escolherSpriteDoJogador();
+
+        // Se o sprite carregou, desenha a imagem real.
+        if (spriteAtual.complete && spriteAtual.naturalWidth > 0) {
+            ctx.drawImage(
+                spriteAtual,
+                jogador.x,
+                jogador.y,
+                jogador.largura,
+                jogador.altura
+            );
+        } else {
+            // Fallback temporário.
+            // Se a imagem não carregar, aparece um quadrado rosa para o personagem não sumir.
+            ctx.fillStyle = '#ff2eb4';
+            ctx.fillRect(jogador.x, jogador.y, jogador.largura, jogador.altura);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(jogador.x + 60, jogador.y + 25, 10, 10);
+        }
+    }
+
+    // ===== ATUALIZAR JOGADOR =====
+    // Aplica gravidade e faz o personagem voltar para o chão.
+
+    function atualizarJogador() {
+        jogador.y += jogador.velocidadeY;
+        jogador.velocidadeY += gravidade;
+
+        // Chão do personagem.
+        // Se o sprite ficar flutuando ou afundando no chão, ajuste esse 160.
+        if (jogador.y >= 160) {
+            jogador.y = 160;
+            jogador.velocidadeY = 0;
+            jogador.pulando = false;
+        }
+    }
+
+    // ===== OBSTÁCULOS =====
 
     function criarObstaculo() {
         const altura = 28 + Math.random() * 35;
@@ -347,21 +453,15 @@ document.addEventListener('DOMContentLoaded', function () {
             ctx.fillRect(obstaculo.x, obstaculo.y, obstaculo.largura, obstaculo.altura);
 
             ctx.fillStyle = 'rgba(138, 43, 226, 0.35)';
-            ctx.fillRect(obstaculo.x - 4, obstaculo.y - 4, obstaculo.largura + 8, obstaculo.altura + 8);
+            ctx.fillRect(
+                obstaculo.x - 4,
+                obstaculo.y - 4,
+                obstaculo.largura + 8,
+                obstaculo.altura + 8
+            );
 
             ctx.fillStyle = '#8a2be2';
         });
-    }
-
-    function atualizarJogador() {
-        jogador.y += jogador.velocidadeY;
-        jogador.velocidadeY += gravidade;
-
-        if (jogador.y >= 220) {
-            jogador.y = 220;
-            jogador.velocidadeY = 0;
-            jogador.pulando = false;
-        }
     }
 
     function atualizarObstaculos() {
@@ -373,6 +473,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return obstaculo.x + obstaculo.largura > 0;
         });
     }
+
+    // ===== COLISÃO =====
 
     function verificarColisao() {
         obstaculos.forEach(function (obstaculo) {
@@ -388,6 +490,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // ===== CONTROLE DE PULO =====
+
     function pular() {
         if (!jogoRodando || gameOver) {
             return;
@@ -399,14 +503,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // ===== SCORE =====
+
     function atualizarScore() {
         score++;
         scoreElemento.textContent = score;
 
+        // A cada 500 pontos, aumenta um pouco a velocidade.
         if (score % 500 === 0) {
             velocidade += 0.5;
         }
     }
+
+    // ===== ENCERRAR JOGO =====
 
     function encerrarJogo() {
         jogoRodando = false;
@@ -431,6 +540,8 @@ document.addEventListener('DOMContentLoaded', function () {
         ctx.fillText('Clique em iniciar para tentar novamente', canvas.width / 2, 165);
     }
 
+    // ===== REINICIAR JOGO =====
+
     function reiniciarJogo() {
         jogoRodando = true;
         gameOver = false;
@@ -439,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function () {
         frame = 0;
         obstaculos = [];
 
-        jogador.y = 220;
+        jogador.y = 160;
         jogador.velocidadeY = 0;
         jogador.pulando = false;
 
@@ -447,6 +558,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         loopJogo();
     }
+
+    // ===== LOOP PRINCIPAL DO JOGO =====
 
     function loopJogo() {
         if (!jogoRodando) {
@@ -471,6 +584,8 @@ document.addEventListener('DOMContentLoaded', function () {
         requestAnimationFrame(loopJogo);
     }
 
+    // ===== TELA INICIAL =====
+
     function telaInicial() {
         desenharFundo();
 
@@ -482,7 +597,12 @@ document.addEventListener('DOMContentLoaded', function () {
         ctx.fillStyle = '#ffffff';
         ctx.font = '16px monospace';
         ctx.fillText('Pressione iniciar para entrar no Void', canvas.width / 2, 155);
+
+        // Mostra o personagem parado na tela inicial.
+        desenharJogador();
     }
+
+    // ===== EVENTOS =====
 
     botaoIniciar.addEventListener('click', reiniciarJogo);
 
@@ -494,6 +614,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     canvas.addEventListener('click', pular);
+
     canvas.addEventListener('touchstart', function (evento) {
         evento.preventDefault();
         pular();
