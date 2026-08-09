@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberVoid Community | CyberVoid Action</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="naves-container"></div>
+
+    <!-- HEADER -->
+    <header id="header-pagina">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.svg" alt="CyberVoid Company" height="40">
+            </div>
+
+            <!-- Menu hambúrguer padrão do site. -->
+            <button id="menu-toggle" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cyberfeed.html">CyberFeed</a></li>
+                <li><a href="void-runner.html">CyberVoid Action</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero exclusivo da pagina do jogo. -->
+    <section class="pagina-comunidade-hero void-runner-hero">
+        <div class="secao-comunidade">
+            <h1>CyberVoid Action</h1>
+            <p class="comunidade-subtitulo">Avance por fases, derrote inimigos e enfrente chefes.</p>
+            <div class="hero-acoes">
+                <a href="#void-runner" class="btn-primary">Jogar agora</a>
+                <a href="cyberfeed.html" class="btn-primary btn-primary-secundario">CyberFeed</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Area real do jogo de acao por fases. -->
+    <section id="void-runner" class="void-runner-section">
+        <div class="void-runner-container">
+            <div class="void-runner-info">
+                <h2>Base de ação 2D</h2>
+                <p class="void-runner-aviso">Estrutura inicial com fases, inimigos, combate corpo a corpo, disparos e boss placeholder.</p>
+            </div>
+
+            <div class="game-panel">
+                <div class="game-header">
+                    <span>TRIX HP: <strong id="void-player-health">100 / 100</strong></span>
+                    <span>Fase: <strong id="void-current-phase">Phase 1</strong></span>
+                    <span>Inimigos: <strong id="void-enemies-left">0</strong></span>
+                </div>
+
+                <div class="game-stage" id="void-game-stage">
+                    <canvas id="void-game" width="900" height="507"></canvas>
+                    <button id="toggle-fullscreen-game" class="game-fullscreen-button" type="button" aria-label="Entrar em tela cheia" title="Entrar em tela cheia" data-fullscreen="false">
+                        <svg class="fullscreen-icon fullscreen-icon-expand" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path>
+                        </svg>
+                        <svg class="fullscreen-icon fullscreen-icon-exit" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="game-controls">
+                    <button id="start-void-game" class="btn-primary">Iniciar fase</button>
+                    <p><strong>A/D</strong> ou setas laterais movem. <strong>W/S</strong> ou setas verticais mudam a profundidade. <strong>Shift</strong> corre. <strong>Espaço</strong> pula. <strong>J</strong> ataca. <strong>K</strong> dispara.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 CyberVoid Community. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="combat/combat-balance.js"></script>
+    <script src="effects/effects.js"></script>
+    <script src="enemies/enemy-system.js"></script>
+    <script src="combat/combat-system.js"></script>
+    <script src="boss/boss-system.js"></script>
+    <script src="levels/level-system.js"></script>
+    <script src="levels/background-manager.js"></script>
+    <script src="player/player.js"></script>
+    <script src="levels/cybervoid-action-game.js"></script>
+    <script src="javascript.js"></script>
+</body>
+</html>

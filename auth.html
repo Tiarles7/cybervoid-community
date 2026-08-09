@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar no Void | CyberVoid</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="header" class="pagina-comunidade-hero auth-header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.svg" alt="CyberVoid Company" height="40">
+            </div>
+
+            <button id="menu-toggle" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cyberfeed.html">CyberFeed</a></li>
+                <li><a href="void-runner.html">CyberVoid Action</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+
+        <main class="auth-shell" data-auth-page>
+            <section class="auth-panel-card" aria-labelledby="auth-title">
+                <span class="home-kicker">CyberVoid</span>
+                <h1 id="auth-title">Entre no Void</h1>
+                <p class="auth-intro">Acesse sua identidade para publicar, interagir e navegar pela rede.</p>
+
+                <p class="form-message" data-auth-general-message aria-live="polite"></p>
+
+                <div class="auth-tabs" role="tablist" aria-label="Acesso CyberVoid">
+                    <button class="auth-tab is-active" type="button" role="tab" aria-selected="true" data-auth-tab="login">Entrar</button>
+                    <button class="auth-tab" type="button" role="tab" aria-selected="false" data-auth-tab="signup">Criar conta</button>
+                </div>
+
+                <form class="auth-form" data-auth-panel="login" data-login-form>
+                    <!-- Login. -->
+                    <label>
+                        <span>E-mail</span>
+                        <input type="email" name="email" autocomplete="email" required>
+                    </label>
+
+                    <label>
+                        <span>Senha</span>
+                        <input type="password" name="password" autocomplete="current-password" required>
+                    </label>
+
+                    <p class="form-message" data-login-message aria-live="polite"></p>
+                    <button type="submit" class="btn-primary">Entrar no Void</button>
+                </form>
+
+                <form class="auth-form" data-auth-panel="signup" data-signup-form hidden>
+                    <!-- Cadastro. -->
+                    <label>
+                        <span>Nome de exibição</span>
+                        <input type="text" name="display_name" maxlength="50" autocomplete="name" required>
+                    </label>
+
+                    <label>
+                        <span>E-mail</span>
+                        <input type="email" name="email" autocomplete="email" required>
+                    </label>
+
+                    <label>
+                        <span>Senha</span>
+                        <input type="password" name="password" autocomplete="new-password" minlength="8" required>
+                    </label>
+
+                    <label>
+                        <span>Confirmar senha</span>
+                        <input type="password" name="confirm_password" autocomplete="new-password" minlength="8" required>
+                    </label>
+
+                    <p class="form-message" data-signup-message aria-live="polite"></p>
+                    <button type="submit" class="btn-primary">Criar minha identidade</button>
+                </form>
+            </section>
+        </main>
+    </header>
+
+    <footer>
+        <p>&copy; 2026 CyberVoid Community. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="supabase-client.js"></script>
+    <script src="javascript.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

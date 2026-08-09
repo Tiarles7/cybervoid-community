@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberVoid Community | O que oferecemos</title>
+    <title>CyberVoid Community | Comunidade</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -35,8 +35,8 @@
             </button>
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Início</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="servicos.html">Comunidade</a></li>
+                <li><a href="cyberfeed.html">CyberFeed</a></li>
+                <li><a href="void-runner.html">CyberVoid Action</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
         </nav>
@@ -44,60 +44,53 @@
 
 
 
-    <!-- SERVIÇOS -->
+    <!-- COMUNIDADE -->
 
-    <section
-    <div class="servicos-grid">
+    <section id="servicos" class="comunidade-section">
+        <div class="secao-comunidade">
+            <h2>Comunidade</h2>
+            <p class="comunidade-subtitulo">Entre, publique, jogue e evolua.</p>
+            <div class="hero-acoes">
+                <a href="cyberfeed.html" class="btn-primary">CyberFeed</a>
+                <a href="void-runner.html" class="btn-primary btn-primary-secundario">CyberVoid Action</a>
+            </div>
+        </div>
 
-        <div class="card-servico">
-            <img src="images/img1site.png" alt="Fórum de dúvidas" class="ilustracao">
-            <h3>Fórum de Dúvidas</h3>
-            <p>Travou num código? Poste sua dúvida e receba ajuda da comunidade. Aqui ninguém aprende sozinho.</p>
+        <!-- Cards principais da Comunidade com as imagens antigas preservadas. -->
+        <div class="servicos-grid">
+
+            <!-- Card visual do CyberFeed. -->
+            <article class="card-servico">
+                <img src="images/img1site.png" alt="CyberFeed" class="ilustracao">
+                <div class="card-conteudo">
+                    <h3>CyberFeed</h3>
+                    <p>Posts, ideias e projetos.</p>
+                    <a href="cyberfeed.html" class="btn-card">Abrir feed</a>
+                </div>
+            </article>
+
+            <!-- Card visual do Void Runner. -->
+            <article class="card-servico">
+                <img src="images/img2landing.png" alt="CyberVoid Action" class="ilustracao">
+                <div class="card-conteudo">
+                    <h3>CyberVoid Action</h3>
+                    <p>Jogue e dispute pontos.</p>
+                    <a href="void-runner.html" class="btn-card">Jogar agora</a>
+                </div>
+            </article>
+
+            <!-- Card visual do ranking e perfis. -->
+            <article class="card-servico">
+                <img src="images/img3manutencao.png" alt="Ranking" class="ilustracao">
+                <div class="card-conteudo">
+                    <h3>Ranking</h3>
+                    <p>Perfis, pontos e evolução.</p>
+                    <a href="cyberfeed.html#ranking" class="btn-card">Ver ranking</a>
+                </div>
+            </article>
+
         </div>
-    
-        <div class="card-servico">
-            <img src="images/img2landing.png" alt="Biblioteca de recursos" class="ilustracao">
-            <h3>Biblioteca de Recursos</h3>
-            <p>Livros gratuitos, documentações, cursos e ferramentas curados para cada etapa da sua jornada.</p>
-        </div>
-    
-        <div class="card-servico">
-            <img src="images/img3manutencao.png" alt="Trilhas de aprendizado" class="ilustracao">
-            <h3>Trilhas de Aprendizado</h3>
-            <p>Roteiros práticos pra você saber exatamente por onde começar e como evoluir em cada tecnologia.</p>
-        </div>
-    
-    </div>
     </section>
-
-    <!-- MINI GAME: VOID RUNNER -->
-     
-<section id="void-runner" class="void-runner-section">
-    <div class="void-runner-container">
-        <div class="void-runner-info">
-            <span class="void-runner-tag">Mini Game</span>
-            <h2>Void Runner</h2>
-            <p>
-                Corra pelo vazio, desvie dos bugs e mantenha sua conexão viva.
-                Um mini game experimental da comunidade CyberVoid.
-            </p>
-        </div>
-
-        <div class="game-panel">
-            <div class="game-header">
-                <span>Score: <strong id="void-score">0</strong></span>
-                <span>Recorde: <strong id="void-best-score">0</strong></span>
-            </div>
-
-            <canvas id="void-game" width="800" height="300"></canvas>
-
-            <div class="game-controls">
-                <button id="start-void-game" class="btn-primary">Iniciar jogo</button>
-                <p>Pressione <strong>Espaço</strong> ou clique/toque no jogo para pular.</p>
-            </div>
-        </div>
-    </div>
-</section>
 
     <!-- FOOTER -->
      

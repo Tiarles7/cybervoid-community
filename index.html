@@ -6,24 +6,13 @@
     <title>CyberVoid Community</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
-
 <body>
-
-
-                         <!-- EU quero café  ;) -->
-
-
-                             <!-- HEADER -->
-
-    <header id="header">
+    <!-- Estrutura principal da aba Início. -->
+    <header id="header" class="home-header">
         <nav class="navbar">
             <div class="logo">
                 <img src="logo.svg" alt="CyberVoid Company" height="40">
             </div>
-
-
-            <!--MENU HAMBÚGUER-->
 
             <button id="menu-toggle" aria-label="Abrir menu">
                 <span></span>
@@ -32,22 +21,77 @@
             </button>
             <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">Início</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="servicos.html">Comunidade</a></li>
+                <li><a href="cyberfeed.html">CyberFeed</a></li>
+                <li><a href="void-runner.html">CyberVoid Action</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
         </nav>
 
+        <main class="home-portal" id="inicio-portal" data-home-portal>
+            <section class="home-hero" aria-labelledby="home-title">
+                <div class="home-hero-copy">
+                    <span class="home-kicker">CyberVoid</span>
+                    <h1 id="home-title">Entre no Void</h1>
+                    <p>Escolha sua rota: conectar-se à rede ou atravessar o caos com a Trix.</p>
+                </div>
 
-                            <!--Inicio-->
+                <!-- Area de entrada da Trix. -->
+                <div class="home-trix-arena" data-trix-arena aria-label="Entrada da Trix">
+                    <div class="home-grid-glow" aria-hidden="true"></div>
+                    <div class="home-trix-actor" data-trix-actor aria-hidden="true">
+                        <div class="home-trix-sprite" data-trix-sprite></div>
+                        <span class="home-trix-shadow"></span>
+                    </div>
 
-        <div class="header-content">
-            <h1>Bem-vindo ao Void</h1>
-            <p>Uma comunidade open source para desenvolvedores que acreditam que conhecimento compartilhado transforma o mundo.</p>
-            <a href="sobre.html" class="btn-primary">Conheça a comunidade</a>
-        </div>
+                    <!-- Caixa de dialogo. -->
+                    <div class="home-trix-dialog" data-trix-dialog aria-live="polite">
+                        <span data-trix-dialog-text></span>
+                    </div>
+                </div>
+            </section>
 
-                             <!-- FOOTER -->
+            <!-- Cards de acesso. -->
+            <section class="home-access" aria-labelledby="home-access-title" data-home-cards>
+                <h2 id="home-access-title">Escolha sua entrada</h2>
+                <div class="home-access-grid">
+                    <a href="cyberfeed.html" class="home-access-card">
+                        <div class="home-access-media">
+                            <img src="images/img1site.png" alt="CyberFeed" class="home-access-image">
+                        </div>
+                        <div class="home-access-content">
+                            <h3>CyberFeed</h3>
+                            <p>Entre na rede, publique e descubra o que está acontecendo no Void.</p>
+                            <span class="btn-card">Acessar a CyberFeed</span>
+                        </div>
+                    </a>
+
+                    <a href="void-runner.html" class="home-access-card">
+                        <div class="home-access-media">
+                            <img src="images/img2landing.png" alt="Jogo da Trix" class="home-access-image">
+                        </div>
+                        <div class="home-access-content">
+                            <h3>Jogo da Trix</h3>
+                            <p>Enfrente criaturas corrompidas e sobreviva às ameaças do Void.</p>
+                            <span class="btn-card">Iniciar missão</span>
+                        </div>
+                    </a>
+
+                    <a href="auth.html" class="home-access-card auth-card-pending" data-auth-card aria-busy="true">
+                        <div class="home-access-media">
+                            <img src="images/img3manutencao.png" alt="Identidade CyberVoid" class="home-access-image">
+                        </div>
+                        <div class="home-access-content">
+                            <!-- Conteudo atualizado apos leitura da sessao. -->
+                            <h3 data-auth-card-title></h3>
+                            <p data-auth-card-description></p>
+                            <span class="btn-card" data-auth-card-button></span>
+                        </div>
+                    </a>
+                </div>
+                <p class="home-access-note">Entre pela rede, jogue com a Trix ou acesse sua identidade no Void.</p>
+            </section>
+        </main>
+    </header>
 
     <footer>
         <p>&copy; 2026 CyberVoid Community. Todos os direitos reservados.</p>
@@ -56,11 +100,13 @@
 
     <div id="void-secreto" class="void-secreto">
         <p>:: Você encontrou uma fenda no código ::</p>
-        <p>No fim, é melhor ser temido… ou amado?</p>
+        <p>No fim, é melhor ser temido... ou amado?</p>
         <p>"Close the world, open the Void."</p>
-                
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="supabase-client.js"></script>
     <script src="javascript.js"></script>
+    <script src="home-auth-card.js"></script>
 </body>
 </html>

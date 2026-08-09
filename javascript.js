@@ -1,12 +1,12 @@
-// Captura o formulário de contato
+// Captura o formulario de contato.
 const formContato = document.getElementById('form-contato');
 
-// Só executa esse código se o formulário existir na página atual
+// So executa esse codigo se o formulario existir na pagina atual.
 if (formContato) {
     const mensagemSucesso = document.getElementById('mensagem-sucesso');
 
     formContato.addEventListener('submit', function (evento) {
-        evento.preventDefault(); // Impede o recarregamento da página
+        evento.preventDefault();
 
         const dadosFormulario = new FormData(formContato);
 
@@ -22,16 +22,8 @@ if (formContato) {
         })
         .then(function (dados) {
             if (dados.success) {
-
-                // Mostra a mensagem com efeito de fade in
-
                 mensagemSucesso.classList.add('mostrar');
-
-                // Limpa os campos do formulário
-
                 formContato.reset();
-
-                // Esconde a mensagem novamente depois de 4 segundos
 
                 setTimeout(function () {
                     mensagemSucesso.classList.remove('mostrar');
@@ -40,14 +32,13 @@ if (formContato) {
                 alert('Algo deu errado ao enviar. Tente novamente.');
             }
         })
-        .catch(function (erro) {
-            alert('Erro de conexão. Verifique sua internet e tente novamente.');
+        .catch(function () {
+            alert('Erro de conexao. Verifique sua internet e tente novamente.');
         });
     });
 }
 
-// ===== MENU HAMBÚRGUER =====
-
+// ===== MENU HAMBURGUER =====
 
 const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');
@@ -58,8 +49,6 @@ if (menuToggle && navLinks) {
         navLinks.classList.toggle('ativo');
     });
 
-    // Fecha o menu automaticamente quando clica em algum link
-    
     const links = navLinks.querySelectorAll('a');
     links.forEach(function (link) {
         link.addEventListener('click', function () {
@@ -71,15 +60,13 @@ if (menuToggle && navLinks) {
 
 // ===== EASTER EGG: MENSAGEM NO CONSOLE =====
 
-
 console.log(
-    '%c:: Você abriu o console. ::\n%cBem-vindo ao Void.\nNem todo dado é visível na superfície...',
+    '%c:: Voce abriu o console. ::\n%cBem-vindo ao Void.\nNem todo dado e visivel na superficie...',
     'color: #ff2eb4; font-size: 18px; font-weight: bold;',
     'color: #8a2be2; font-size: 14px;'
 );
 
 // ===== EASTER EGG: KONAMI CODE =====
-
 
 const voidSecreto = document.getElementById('void-secreto');
 
@@ -101,7 +88,6 @@ if (voidSecreto) {
                 voidSecreto.classList.add('ativo');
                 posicaoAtual = 0;
 
-                // Fecha automaticamente depois de 5 segundos
                 setTimeout(function () {
                     voidSecreto.classList.remove('ativo');
                 }, 7000);
@@ -112,23 +98,14 @@ if (voidSecreto) {
     });
 }
 
-// ===== EFEITO TERMINAL (PÁGINA SOBRE) =====
-
+// ===== EFEITO TERMINAL (PAGINA SOBRE) =====
 
 const terminalTexto = document.getElementById('terminal-texto');
 
 if (terminalTexto) {
-    const textoCompleto = `> O CyberVoid nasceu de uma crença simples: tecnologia de qualidade não deveria ser privilégio de poucos.
-
-    > Vivemos numa era em que a programação é uma das habilidades mais transformadoras do mundo, mas o acesso a bons recursos, mentores e comunidades ainda é desigual. O CyberVoid existe pra mudar isso.
-    
-    > Aqui você encontra um espaço aberto para tirar dúvidas, compartilhar ideias, descobrir livros, explorar projetos e evoluir junto com outros desenvolvedores, do iniciante ao experiente.
-    
-    > Acreditamos que o conhecimento cresce quando é compartilhado. Que uma dúvida respondida hoje pode ser o detalhe que muda a carreira de alguém amanhã.
-    
-    > Não importa de onde você vem, qual linguagem você usa ou em que nível está. Se você tem curiosidade e vontade de aprender, você pertence ao Void.
-    
-    > Bem-vindo à comunidade. Você está conectado.`;
+    const textoCompleto = `> CyberVoid.
+> Feed, jogo, perfis e ranking.
+> Voce esta conectado.`;
 
     let indice = 0;
 
@@ -136,21 +113,18 @@ if (terminalTexto) {
         if (indice < textoCompleto.length) {
             terminalTexto.textContent += textoCompleto.charAt(indice);
             indice++;
-    
-            // Rola o terminal automaticamente acompanhando a digitação
-            
+
             const terminalCorpo = terminalTexto.parentElement;
             terminalCorpo.scrollTop = terminalCorpo.scrollHeight;
-    
-            setTimeout(digitar, 100); // velocidade da digitação (em ms)
+
+            setTimeout(digitar, 100);
         }
     }
 
     digitar();
 }
 
-// ===== NAVES ANIMADAS (FUNDO - PÁGINA SERVIÇOS) =====
-
+// ===== NAVES ANIMADAS (FUNDO - PAGINA SERVICOS) =====
 
 const navesContainer = document.getElementById('naves-container');
 
@@ -176,26 +150,22 @@ if (navesContainer) {
 
                 <path d="M40 30 L8 50 L18 54 L40 42 Z" fill="url(#casco${idUnico})" stroke="#00e5ff" stroke-width="1.2"/>
                 <path d="M40 30 L72 50 L62 54 L40 42 Z" fill="url(#casco${idUnico})" stroke="#00e5ff" stroke-width="1.2"/>
-
                 <path d="M40 4 L52 38 L48 70 L40 76 L32 70 L28 38 Z" fill="url(#casco${idUnico})" stroke="#00e5ff" stroke-width="1.5"/>
-
                 <line x1="40" y1="14" x2="40" y2="66" stroke="url(#brilho${idUnico})" stroke-width="2" opacity="0.8"/>
-
                 <ellipse cx="40" cy="22" rx="5" ry="8" fill="#5cf0ff" opacity="0.85"/>
-
                 <circle cx="34" cy="68" r="3" fill="#00e5ff" opacity="0.9"/>
                 <circle cx="46" cy="68" r="3" fill="#00e5ff" opacity="0.9"/>
-
                 <path d="M34 71 L31 84 L37 71 Z" fill="#00e5ff" opacity="0.4"/>
                 <path d="M46 71 L43 84 L49 71 Z" fill="#00e5ff" opacity="0.4"/>
             </svg>
         `;
 
-        // Posição inicial aleatória nas bordas da tela
-
-
-        const ladoInicial = Math.floor(Math.random() * 4); // 0=topo, 1=direita, 2=baixo, 3=esquerda
-        let inicioX, inicioY, destinoX, destinoY, angulo;
+        const ladoInicial = Math.floor(Math.random() * 4);
+        let inicioX;
+        let inicioY;
+        let destinoX;
+        let destinoY;
+        let angulo;
 
         const larguraTela = window.innerWidth;
         const alturaTela = window.innerHeight;
@@ -249,376 +219,189 @@ if (navesContainer) {
     }
 
     iniciarNaves();
-} 
-// ===== MINI GAME: VOID RUNNER =====
+}
 
-document.addEventListener('DOMContentLoaded', function () {
-    const canvas = document.getElementById('void-game');
-    const botaoIniciar = document.getElementById('start-void-game');
-    const scoreElemento = document.getElementById('void-score');
-    const bestScoreElemento = document.getElementById('void-best-score');
+// ===== HOME: ENTRADA ANIMADA DA TRIX =====
 
-    // Só executa o jogo se todos os elementos existirem na página atual.
-    // Isso evita erro nas páginas que não têm o mini game.
-    if (!canvas || !botaoIniciar || !scoreElemento || !bestScoreElemento) {
+(function iniciarPortalDaHome() {
+    const portal = document.querySelector('[data-home-portal]');
+
+    if (!portal) {
         return;
     }
 
-    const ctx = canvas.getContext('2d');
-
-    // ===== SPRITES DO VOID RUNNER =====
-    // Aqui carregamos as imagens reais do personagem.
-    // Elas precisam estar dentro da pasta:
-    // images/void-runner/
-
-    const spritesVoidRunner = {
-        idle: new Image(),
-        run01: new Image(),
-        run02: new Image(),
-        run03: new Image(),
-        jump: new Image(),
-        fall: new Image(),
-        slide: new Image()
-    };
-
-    spritesVoidRunner.idle.src = 'images/void-runner/idle.png';
-    spritesVoidRunner.run01.src = 'images/void-runner/run-01.png';
-    spritesVoidRunner.run02.src = 'images/void-runner/run-02.png';
-    spritesVoidRunner.run03.src = 'images/void-runner/run-03.png';
-    spritesVoidRunner.jump.src = 'images/void-runner/jump.png';
-    spritesVoidRunner.fall.src = 'images/void-runner/fall.png';
-    spritesVoidRunner.slide.src = 'images/void-runner/slide.png';
-
-    // Teste simples para avisar no console se o sprite principal carregou.
-    spritesVoidRunner.idle.onload = function () {
-        console.log('Sprite idle carregado com sucesso.');
-    };
-
-    spritesVoidRunner.idle.onerror = function () {
-        console.error('Erro ao carregar idle.png. Verifique o caminho: images/void-runner/idle.png');
-    };
-
-    // ===== VARIÁVEIS DO JOGO =====
-
-    let jogoRodando = false;
-    let gameOver = false;
-    let score = 0;
-    let velocidade = 6;
-    let gravidade = 0.7;
-    let frame = 0;
-    let obstaculos = [];
-
-    let melhorScore = localStorage.getItem('voidRunnerBestScore') || 0;
-    bestScoreElemento.textContent = melhorScore;
-
-    // ===== JOGADOR =====
-    // Aqui você ajusta tamanho e posição do Void Runner.
-    // Se ele ficar grande demais, diminua largura e altura.
-    // Se ele ficar pequeno demais, aumente largura e altura.
-
-    const jogador = {
-        x: 70,
-        y: 160,
-        largura: 100,
-        altura: 100,
-        velocidadeY: 0,
-        pulando: false
-    };
-
-    // ===== FUNDO DO JOGO =====
-
-    function desenharFundo() {
-        ctx.fillStyle = '#080812';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Grade cyberpunk no chão
-        ctx.strokeStyle = 'rgba(255, 46, 180, 0.18)';
-        ctx.lineWidth = 1;
-
-        for (let x = 0; x < canvas.width; x += 40) {
-            ctx.beginPath();
-            ctx.moveTo(x, 250);
-            ctx.lineTo(x - 80, canvas.height);
-            ctx.stroke();
-        }
-
-        for (let y = 250; y < canvas.height; y += 16) {
-            ctx.beginPath();
-            ctx.moveTo(0, y);
-            ctx.lineTo(canvas.width, y);
-            ctx.stroke();
-        }
-
-        // Linha do chão
-        ctx.strokeStyle = '#ff2eb4';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.moveTo(0, 250);
-        ctx.lineTo(canvas.width, 250);
-        ctx.stroke();
+    // Limpeza dos controladores de animacao.
+    if (window.cyberVoidHomeController && window.cyberVoidHomeController.destroy) {
+        window.cyberVoidHomeController.destroy();
     }
 
-    // ===== ESCOLHER SPRITE DO PERSONAGEM =====
-    // Essa função decide qual imagem usar:
-    // parado, correndo, pulando ou caindo.
+    const arena = portal.querySelector('[data-trix-arena]');
+    const actor = portal.querySelector('[data-trix-actor]');
+    const sprite = portal.querySelector('[data-trix-sprite]');
+    const dialog = portal.querySelector('[data-trix-dialog]');
+    const dialogText = portal.querySelector('[data-trix-dialog-text]');
+    const cards = portal.querySelector('[data-home-cards]');
+    const walkSrc = 'images/void-runner/player_woman/Dream25-ezgif.com-gif-to-sprite-converter-Photoroom.png';
+    const idleSrc = 'images/void-runner/player_woman/Dream223-ezgif.com-gif-to-sprite-converter.png';
+    const walkFrames = 10;
+    const idleFrames = 16;
+    const walkColumns = 5;
+    const idleColumns = 5;
+    const walkRows = 2;
+    const idleRows = 4;
+    const walkDuration = 2600;
+    const frameDuration = 95;
+    const text = 'Bem-vindo ao Void.';
+    const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let animationFrameId = null;
+    let typeTimerId = null;
+    let idleTimerId = null;
+    let destroyed = false;
 
-    function escolherSpriteDoJogador() {
-        // Se estiver subindo, usa sprite de pulo.
-        if (jogador.velocidadeY < -1) {
-            return spritesVoidRunner.jump;
-        }
+    if (!arena || !actor || !sprite || !dialog || !dialogText || !cards) {
+        return;
+    }
 
-        // Se estiver caindo, usa sprite de queda.
-        if (jogador.velocidadeY > 1) {
-            return spritesVoidRunner.fall;
-        }
+    portal.classList.add('home-motion-pending');
 
-        // Se o jogo estiver rodando e ele estiver no chão, usa animação de corrida.
-        if (jogoRodando) {
-            const frameCorrida = Math.floor(frame / 8) % 3;
+    function carregarImagem(src) {
+        return new Promise(function (resolve, reject) {
+            const image = new Image();
 
-            if (frameCorrida === 0) {
-                return spritesVoidRunner.run01;
+            image.onload = function () {
+                resolve(image);
+            };
+            image.onerror = function () {
+                reject(new Error('Asset da Trix nao carregou: ' + src));
+            };
+            image.src = src;
+        });
+    }
+
+    // Controle dos frames de caminhada.
+    function aplicarFrame(totalFrames, columns, rows, frame) {
+        const safeFrame = frame % totalFrames;
+        const column = safeFrame % columns;
+        const row = Math.floor(safeFrame / columns);
+
+        sprite.style.backgroundPosition = (column * 100 / (columns - 1)) + '% ' + (row * 100 / (rows - 1)) + '%';
+    }
+
+    function calcularCena() {
+        const actorWidth = actor.getBoundingClientRect().width || 176;
+        const arenaWidth = arena.getBoundingClientRect().width || 640;
+        const startX = -actorWidth - 28;
+        const endX = Math.max(24, arenaWidth * 0.5 - actorWidth * 0.5);
+
+        return { actorWidth: actorWidth, startX: startX, endX: endX };
+    }
+
+    function posicionarActor(x) {
+        actor.style.transform = 'translateX(' + x + 'px)';
+    }
+
+    // Transicao da caminhada para idle.
+    function ativarIdle() {
+        sprite.classList.remove('is-walking');
+        sprite.classList.add('is-idle');
+        aplicarFrame(idleFrames, idleColumns, idleRows, 0);
+
+        idleTimerId = window.setInterval(function () {
+            const current = Number(sprite.dataset.idleFrame || 0) + 1;
+
+            sprite.dataset.idleFrame = String(current % idleFrames);
+            aplicarFrame(idleFrames, idleColumns, idleRows, current);
+        }, 180);
+
+        mostrarDialogo();
+    }
+
+    // Caixa de dialogo.
+    function mostrarDialogo() {
+        let index = 0;
+
+        dialog.classList.add('is-visible');
+        dialogText.textContent = '';
+
+        function digitar() {
+            if (destroyed) {
+                return;
             }
 
-            if (frameCorrida === 1) {
-                return spritesVoidRunner.run02;
+            dialogText.textContent = text.slice(0, index);
+            index++;
+
+            if (index <= text.length) {
+                typeTimerId = window.setTimeout(digitar, 42);
+                return;
             }
 
-            return spritesVoidRunner.run03;
+            window.setTimeout(function () {
+                if (!destroyed) {
+                    cards.classList.add('is-visible');
+                    portal.classList.remove('home-motion-pending');
+                }
+            }, 360);
         }
 
-        // Antes de iniciar o jogo, usa sprite parado.
-        return spritesVoidRunner.idle;
+        digitar();
     }
 
-    // ===== DESENHAR JOGADOR =====
+    function iniciarAnimacao() {
+        const scene = calcularCena();
 
-    function desenharJogador() {
-        const spriteAtual = escolherSpriteDoJogador();
+        actor.classList.add('is-ready');
+        sprite.classList.add('is-walking');
+        posicionarActor(scene.startX);
+        aplicarFrame(walkFrames, walkColumns, walkRows, 0);
 
-        // Se o sprite carregou, desenha a imagem real.
-        if (spriteAtual.complete && spriteAtual.naturalWidth > 0) {
-            ctx.drawImage(
-                spriteAtual,
-                jogador.x,
-                jogador.y,
-                jogador.largura,
-                jogador.altura
-            );
-        } else {
-            // Fallback temporário.
-            // Se a imagem não carregar, aparece um quadrado rosa para o personagem não sumir.
-            ctx.fillStyle = '#ff2eb4';
-            ctx.fillRect(jogador.x, jogador.y, jogador.largura, jogador.altura);
-
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(jogador.x + 60, jogador.y + 25, 10, 10);
-        }
-    }
-
-    // ===== ATUALIZAR JOGADOR =====
-    // Aplica gravidade e faz o personagem voltar para o chão.
-
-    function atualizarJogador() {
-        jogador.y += jogador.velocidadeY;
-        jogador.velocidadeY += gravidade;
-
-        // Chão do personagem.
-        // Se o sprite ficar flutuando ou afundando no chão, ajuste esse 160.
-        if (jogador.y >= 160) {
-            jogador.y = 160;
-            jogador.velocidadeY = 0;
-            jogador.pulando = false;
-        }
-    }
-
-    // ===== OBSTÁCULOS =====
-
-    function criarObstaculo() {
-        const altura = 28 + Math.random() * 35;
-
-        obstaculos.push({
-            x: canvas.width,
-            y: 250 - altura,
-            largura: 28,
-            altura: altura
-        });
-    }
-
-    function desenharObstaculos() {
-        ctx.fillStyle = '#8a2be2';
-
-        obstaculos.forEach(function (obstaculo) {
-            ctx.fillRect(obstaculo.x, obstaculo.y, obstaculo.largura, obstaculo.altura);
-
-            ctx.fillStyle = 'rgba(138, 43, 226, 0.35)';
-            ctx.fillRect(
-                obstaculo.x - 4,
-                obstaculo.y - 4,
-                obstaculo.largura + 8,
-                obstaculo.altura + 8
-            );
-
-            ctx.fillStyle = '#8a2be2';
-        });
-    }
-
-    function atualizarObstaculos() {
-        obstaculos.forEach(function (obstaculo) {
-            obstaculo.x -= velocidade;
-        });
-
-        obstaculos = obstaculos.filter(function (obstaculo) {
-            return obstaculo.x + obstaculo.largura > 0;
-        });
-    }
-
-    // ===== COLISÃO =====
-
-    function verificarColisao() {
-        obstaculos.forEach(function (obstaculo) {
-            const colidiu =
-                jogador.x < obstaculo.x + obstaculo.largura &&
-                jogador.x + jogador.largura > obstaculo.x &&
-                jogador.y < obstaculo.y + obstaculo.altura &&
-                jogador.y + jogador.altura > obstaculo.y;
-
-            if (colidiu) {
-                encerrarJogo();
-            }
-        });
-    }
-
-    // ===== CONTROLE DE PULO =====
-
-    function pular() {
-        if (!jogoRodando || gameOver) {
+        if (reducedMotion) {
+            posicionarActor(scene.endX);
+            ativarIdle();
             return;
         }
 
-        if (!jogador.pulando) {
-            jogador.velocidadeY = -13;
-            jogador.pulando = true;
-        }
-    }
+        const startedAt = performance.now();
 
-    // ===== SCORE =====
+        function step(now) {
+            if (destroyed) {
+                return;
+            }
 
-    function atualizarScore() {
-        score++;
-        scoreElemento.textContent = score;
+            const progress = Math.min(1, (now - startedAt) / walkDuration);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const x = scene.startX + (scene.endX - scene.startX) * eased;
+            const frame = Math.floor((now - startedAt) / frameDuration) % walkFrames;
 
-        // A cada 500 pontos, aumenta um pouco a velocidade.
-        if (score % 500 === 0) {
-            velocidade += 0.5;
-        }
-    }
+            posicionarActor(x);
+            aplicarFrame(walkFrames, walkColumns, walkRows, frame);
 
-    // ===== ENCERRAR JOGO =====
+            if (progress < 1) {
+                animationFrameId = window.requestAnimationFrame(step);
+                return;
+            }
 
-    function encerrarJogo() {
-        jogoRodando = false;
-        gameOver = true;
-
-        if (score > melhorScore) {
-            melhorScore = score;
-            localStorage.setItem('voidRunnerBestScore', melhorScore);
-            bestScoreElemento.textContent = melhorScore;
+            posicionarActor(scene.endX);
+            ativarIdle();
         }
 
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.65)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#ff2eb4';
-        ctx.font = '32px monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText('CONEXÃO PERDIDA', canvas.width / 2, 135);
-
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '16px monospace';
-        ctx.fillText('Clique em iniciar para tentar novamente', canvas.width / 2, 165);
+        animationFrameId = window.requestAnimationFrame(step);
     }
 
-    // ===== REINICIAR JOGO =====
-
-    function reiniciarJogo() {
-        jogoRodando = true;
-        gameOver = false;
-        score = 0;
-        velocidade = 6;
-        frame = 0;
-        obstaculos = [];
-
-        jogador.y = 160;
-        jogador.velocidadeY = 0;
-        jogador.pulando = false;
-
-        scoreElemento.textContent = score;
-
-        loopJogo();
-    }
-
-    // ===== LOOP PRINCIPAL DO JOGO =====
-
-    function loopJogo() {
-        if (!jogoRodando) {
-            return;
+    window.cyberVoidHomeController = {
+        destroy: function () {
+            destroyed = true;
+            window.cancelAnimationFrame(animationFrameId);
+            window.clearTimeout(typeTimerId);
+            window.clearInterval(idleTimerId);
         }
+    };
 
-        frame++;
-
-        desenharFundo();
-        atualizarJogador();
-        atualizarObstaculos();
-
-        if (frame % 90 === 0) {
-            criarObstaculo();
-        }
-
-        desenharJogador();
-        desenharObstaculos();
-        verificarColisao();
-        atualizarScore();
-
-        requestAnimationFrame(loopJogo);
-    }
-
-    // ===== TELA INICIAL =====
-
-    function telaInicial() {
-        desenharFundo();
-
-        ctx.fillStyle = '#ff2eb4';
-        ctx.font = '30px monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText('VOID RUNNER', canvas.width / 2, 120);
-
-        ctx.fillStyle = '#ffffff';
-        ctx.font = '16px monospace';
-        ctx.fillText('Pressione iniciar para entrar no Void', canvas.width / 2, 155);
-
-        // Mostra o personagem parado na tela inicial.
-        desenharJogador();
-    }
-
-    // ===== EVENTOS =====
-
-    botaoIniciar.addEventListener('click', reiniciarJogo);
-
-    document.addEventListener('keydown', function (evento) {
-        if (evento.code === 'Space') {
-            evento.preventDefault();
-            pular();
-        }
-    });
-
-    canvas.addEventListener('click', pular);
-
-    canvas.addEventListener('touchstart', function (evento) {
-        evento.preventDefault();
-        pular();
-    });
-
-    telaInicial();
-});
+    Promise.all([carregarImagem(walkSrc), carregarImagem(idleSrc)])
+        .then(iniciarAnimacao)
+        .catch(function (error) {
+            console.error(error.message);
+            portal.classList.remove('home-motion-pending');
+            cards.classList.add('is-visible');
+        });
+}());

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberVoid Community | CyberFeed</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="naves-container"></div>
+
+    <header id="header-pagina">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo.svg" alt="CyberVoid Company" height="40">
+            </div>
+
+            <button id="menu-toggle" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="cyberfeed.html">CyberFeed</a></li>
+                <li><a href="void-runner.html">CyberVoid Action</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Estrutura persistente da CyberFeed. -->
+    <main class="cyberfeed-app" data-cyberfeed-app>
+        <header class="cyberfeed-topbar">
+            <button type="button" class="cyberfeed-brand" data-cyberfeed-route="feed">CyberFeed</button>
+            <nav class="cyberfeed-topnav" aria-label="Navegação da CyberFeed">
+                <button type="button" data-cyberfeed-route="feed">Feed global</button>
+            </nav>
+            <h1 class="cyberfeed-view-title" data-cyberfeed-view-title>Feed global</h1>
+            <div class="cyberfeed-user-slot">
+                <button type="button" class="cyberfeed-user-chip" data-cyberfeed-me hidden>
+                    <span class="cyberfeed-mini-avatar" data-cyberfeed-avatar>
+                        <img data-cyberfeed-avatar-image alt="" hidden>
+                        <span data-cyberfeed-avatar-initial>V</span>
+                    </span>
+                    <span data-cyberfeed-name>Meu perfil</span>
+                </button>
+                <a href="auth.html?return=cyberfeed.html%3Fview%3Dme" class="btn-primary btn-primary-secundario cyberfeed-login" data-cyberfeed-login hidden>Entrar no Void</a>
+            </div>
+        </header>
+
+        <div class="cyberfeed-shell">
+            <aside class="cyberfeed-sidebar" aria-label="Navegação interna">
+                <button type="button" class="is-active" data-cyberfeed-nav="feed" data-cyberfeed-route="feed">Feed global</button>
+                <button type="button" data-cyberfeed-nav="me" data-cyberfeed-route="me" hidden>Meu perfil</button>
+                <a href="auth.html?return=cyberfeed.html%3Fview%3Dme" data-cyberfeed-login-nav hidden>Entrar no Void</a>
+            </aside>
+
+            <section class="cyberfeed-main" aria-live="polite">
+                <!-- Feed global. -->
+                <article class="cyberfeed-view is-active" data-cyberfeed-view="feed">
+                    <div class="cyberfeed-empty-feed">
+                        <span class="home-kicker">Feed global</span>
+                        <h1>O Void está silencioso.</h1>
+                        <p>As primeiras transmissões da CyberFeed aparecerão aqui.</p>
+                        <p class="cyberfeed-auth-hint" data-cyberfeed-auth-hint hidden>Em breve você poderá iniciar uma transmissão.</p>
+                    </div>
+                </article>
+
+                <article class="cyberfeed-view" data-cyberfeed-view="profile" hidden>
+                    <div class="profile-shell social-profile cyberfeed-profile" data-profile-page>
+                        <!-- Cabeçalho do perfil. -->
+                        <section class="profile-hero" aria-labelledby="profile-title">
+                            <!-- Capa. -->
+                            <div class="profile-cover" data-profile-cover>
+                                <img data-profile-cover-image alt="Capa do perfil" hidden>
+                                <button type="button" class="profile-cover-action" data-profile-cover-edit hidden>Alterar capa</button>
+                            </div>
+
+                            <div class="profile-identity-row">
+                                <!-- Avatar. -->
+                                <div class="profile-avatar-wrap">
+                                    <div class="profile-avatar" data-profile-avatar aria-hidden="true">
+                                        <img data-profile-avatar-image alt="" hidden>
+                                        <span data-profile-avatar-initial>V</span>
+                                    </div>
+                                    <button type="button" class="profile-avatar-action" data-profile-avatar-edit hidden aria-label="Alterar avatar">Editar</button>
+                                </div>
+
+                                <!-- Identidade. -->
+                                <div class="profile-public-info">
+                                    <p class="form-message" data-profile-message aria-live="polite">Carregando identidade...</p>
+                                    <h1 id="profile-title" data-profile-display-name>Viajante do Void</h1>
+                                    <p class="profile-username" data-profile-username>@username</p>
+                                    <p class="profile-bio" data-profile-bio>Carregando biografia...</p>
+                                    <p class="profile-joined" data-profile-created-at>No Void desde agora</p>
+                                </div>
+
+                                <div class="profile-actions">
+                                    <button type="button" class="btn-primary profile-primary-action" data-edit-profile-button hidden>Editar perfil</button>
+                                    <button type="button" class="btn-primary btn-primary-secundario profile-secondary-action" data-account-settings-open hidden>Configurações</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Barra de navegação. -->
+                        <nav class="profile-tabs" aria-label="Navegação do perfil">
+                            <button type="button" class="profile-tab is-active" data-profile-tab="posts">Publicações</button>
+                            <button type="button" class="profile-tab" data-profile-tab="about">Sobre</button>
+                            <button type="button" class="profile-tab" data-profile-tab="media">Mídia</button>
+                        </nav>
+
+                        <!-- Colunas do perfil. -->
+                        <div class="profile-content-grid">
+                            <aside class="profile-intro-panel" aria-labelledby="profile-intro-title">
+                                <h2 id="profile-intro-title">Introdução</h2>
+                                <p data-profile-intro-bio>Carregando biografia...</p>
+                                <ul>
+                                    <li data-profile-intro-created>No Void desde agora</li>
+                                    <li data-profile-intro-username>@username</li>
+                                </ul>
+                                <button type="button" class="btn-primary btn-primary-secundario profile-detail-action" data-edit-details-button hidden>Editar detalhes</button>
+                            </aside>
+
+                            <section class="profile-tab-panels" aria-live="polite">
+                                <article class="profile-tab-panel is-active" data-profile-panel="posts">
+                                    <div class="profile-empty-state">
+                                        <h2>Publicações</h2>
+                                        <p>Nenhuma publicação ainda.</p>
+                                    </div>
+                                </article>
+
+                                <article class="profile-tab-panel" data-profile-panel="about" hidden>
+                                    <div class="profile-about-panel">
+                                        <h2>Sobre</h2>
+                                        <dl>
+                                            <div>
+                                                <dt>Nome</dt>
+                                                <dd data-profile-about-name>Viajante do Void</dd>
+                                            </div>
+                                            <div>
+                                                <dt>Username</dt>
+                                                <dd data-profile-about-username>@username</dd>
+                                            </div>
+                                            <div>
+                                                <dt>Entrada</dt>
+                                                <dd data-profile-about-created>No Void desde agora</dd>
+                                            </div>
+                                        </dl>
+                                    </div>
+                                </article>
+
+                                <article class="profile-tab-panel" data-profile-panel="media" hidden>
+                                    <div class="profile-empty-state">
+                                        <h2>Mídia</h2>
+                                        <p>Nenhuma mídia publicada ainda.</p>
+                                    </div>
+                                </article>
+                            </section>
+                        </div>
+
+                        <div class="account-settings-backdrop" data-account-settings hidden>
+                            <section class="account-settings-modal" role="dialog" aria-modal="true" aria-labelledby="account-settings-title">
+                                <div class="profile-editor-header">
+                                    <div>
+                                        <span class="home-kicker">Conta</span>
+                                        <h2 id="account-settings-title">Configurações da conta</h2>
+                                    </div>
+                                    <button type="button" class="profile-editor-close" data-account-settings-close aria-label="Fechar configurações">×</button>
+                                </div>
+                                <p class="account-email" data-profile-email></p>
+                                <div class="profile-editor-actions">
+                                    <button type="button" class="btn-primary btn-primary-secundario" data-logout-button>Sair da conta</button>
+                                    <button type="button" class="btn-primary" data-account-settings-close>Fechar</button>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Editor. -->
+                        <div class="profile-editor-backdrop" data-profile-editor hidden>
+                            <section class="profile-editor" role="dialog" aria-modal="true" aria-labelledby="profile-editor-title">
+                                <form data-profile-form>
+                                    <div class="profile-editor-header">
+                                        <div>
+                                            <span class="home-kicker">Perfil</span>
+                                            <h2 id="profile-editor-title">Editar perfil</h2>
+                                        </div>
+                                        <button type="button" class="profile-editor-close" data-profile-cancel aria-label="Cancelar edição">×</button>
+                                    </div>
+
+                                    <div class="profile-editor-grid">
+                                        <label>
+                                            <span>Nome de exibição</span>
+                                            <input type="text" name="display_name" maxlength="50" autocomplete="name" required>
+                                        </label>
+
+                                        <label>
+                                            <span>Username</span>
+                                            <span class="username-input-wrap">
+                                                <span aria-hidden="true">@</span>
+                                                <input type="text" name="username" maxlength="24" autocomplete="username" required>
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <label class="profile-editor-bio">
+                                        <span>Biografia</span>
+                                        <textarea name="bio" maxlength="300" rows="5"></textarea>
+                                        <span class="bio-counter"><span data-bio-count>0</span>/300</span>
+                                    </label>
+
+                                    <div class="profile-editor-media">
+                                        <label class="media-field">
+                                            <span>Avatar</span>
+                                            <span class="file-picker">
+                                                <input type="file" name="avatar" accept="image/jpeg,image/png,image/webp">
+                                                <span>Escolher avatar</span>
+                                            </span>
+                                            <span class="selected-file-name" data-avatar-file-name>Nenhum arquivo escolhido</span>
+                                            <span class="media-preview avatar-preview" data-avatar-preview>
+                                                <img alt="Prévia do avatar" hidden>
+                                                <span data-avatar-preview-initial>V</span>
+                                            </span>
+                                        </label>
+
+                                        <label class="media-field">
+                                            <span>Imagem de capa</span>
+                                            <span class="file-picker">
+                                                <input type="file" name="cover" accept="image/jpeg,image/png,image/webp">
+                                                <span>Escolher capa</span>
+                                            </span>
+                                            <span class="selected-file-name" data-cover-file-name>Nenhum arquivo escolhido</span>
+                                            <span class="media-preview cover-preview" data-cover-preview>
+                                                <img alt="Prévia da capa" hidden>
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <p class="form-message" data-profile-form-message aria-live="polite"></p>
+
+                                    <div class="profile-editor-actions">
+                                        <button type="submit" class="btn-primary" data-profile-save>Salvar alterações</button>
+                                        <button type="button" class="btn-primary btn-primary-secundario" data-profile-cancel>Cancelar</button>
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="cyberfeed-view" data-cyberfeed-view="not-found" hidden>
+                    <div class="cyberfeed-empty-feed">
+                        <span class="home-kicker">Perfil</span>
+                        <h1>Este perfil não foi encontrado no Void.</h1>
+                        <button type="button" class="btn-primary" data-cyberfeed-route="feed">Voltar ao feed global</button>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CyberVoid Community. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="supabase-client.js"></script>
+    <script src="javascript.js"></script>
+    <script src="profile.js"></script>
+    <script src="cyberfeed.js"></script>
+</body>
+</html>
