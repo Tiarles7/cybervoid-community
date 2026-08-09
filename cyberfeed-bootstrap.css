@@ -1,0 +1,1673 @@
+/* Bootstrap exclusivo da CyberFeed oficial. */
+.cyberfeed-app {
+            --cv-bg: #0d0a14;
+            --cv-card: #14101f;
+            --cv-elevated: #1b1528;
+            --cv-text: #f5f1ff;
+            --cv-muted: #aaa2b8;
+            --cv-magenta: #e5007d;
+            --cv-purple: #7c3aed;
+            --cv-cyan: #22d3ee;
+            --cv-border: rgba(255, 255, 255, 0.08);
+            --cv-border-strong: rgba(229, 0, 125, 0.42);
+            --cv-shadow: 0 22px 55px rgba(0, 0, 0, 0.35);
+            --cv-navbar-height: 72px;
+            --cyberfeed-socialbar-height: 72px;
+        }
+
+
+        .cyberfeed-app,
+.cyberfeed-app * {
+            box-sizing: border-box;
+        }
+
+
+        .cyberfeed-app {
+            overflow-x: clip;
+        }
+
+
+        .cyberfeed-app {
+            min-height: 100vh;
+            overflow-x: clip;
+            background:
+                radial-gradient(circle at top left, rgba(229, 0, 125, 0.16), transparent 28rem),
+                radial-gradient(circle at top right, rgba(34, 211, 238, 0.11), transparent 26rem),
+                linear-gradient(180deg, #0d0a14 0%, #100c19 48%, #0d0a14 100%);
+            color: var(--cv-text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            padding-top: 0;
+        }
+
+
+        .cyberfeed-app a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        .cyberfeed-app button,
+.cyberfeed-app input {
+            font: inherit;
+        }
+
+
+        /* Evita heranca do padding global em secoes internas. */
+        .cyberfeed-app section {
+            padding: 0;
+        }
+
+
+        .cyberfeed-app .prototype-navbar {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            min-height: var(--cyberfeed-socialbar-height);
+            padding-block: 0.5rem;
+            border-bottom: 1px solid var(--cv-border);
+            background: rgba(13, 10, 20, 0.96);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+        }
+
+
+        .cyberfeed-page #header-pagina .navbar {
+            min-height: 70px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+
+        .cyberfeed-page #header-pagina .site-logo-image {
+            height: 38px;
+            max-width: 160px;
+            object-fit: contain;
+        }
+
+
+        .cyberfeed-app .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.62rem;
+            color: var(--cv-text);
+            font-weight: 800;
+            letter-spacing: 0;
+            border: 0;
+            background: transparent;
+        }
+
+
+        .cyberfeed-app .brand-mark span:first-child {
+            display: grid;
+            place-items: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cv-magenta), var(--cv-purple));
+            box-shadow: 0 0 24px rgba(229, 0, 125, 0.38);
+        }
+
+
+        .cyberfeed-app .nav-search {
+            width: min(36rem, 42vw);
+            position: relative;
+        }
+
+
+        .cyberfeed-app .nav-search i {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            color: var(--cv-muted);
+        }
+
+
+        .cyberfeed-app .nav-search input {
+            width: 100%;
+            min-height: 2.75rem;
+            border: 1px solid var(--cv-border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            color: var(--cv-text);
+            padding: 0.65rem 1rem 0.65rem 2.8rem;
+            outline: none;
+        }
+
+
+        .cyberfeed-app .nav-search input:focus {
+            border-color: rgba(34, 211, 238, 0.45);
+            box-shadow: 0 0 0 0.22rem rgba(34, 211, 238, 0.11);
+        }
+
+
+        @media (min-width: 992px) {
+            .cyberfeed-app .prototype-navbar .container-fluid {
+                display: grid;
+                grid-template-columns: minmax(272px, 1fr) minmax(320px, 36rem) minmax(272px, 1fr);
+                align-items: center;
+                column-gap: 24px;
+                width: min(1480px, 100%);
+                margin-inline: auto;
+                padding-inline: clamp(0.75rem, 2vw, 1.5rem) !important;
+            }
+
+            .cyberfeed-app .brand-mark {
+                justify-self: start;
+            }
+
+            .cyberfeed-app .desktop-search {
+                justify-self: center;
+                width: 100%;
+                max-width: 36rem;
+                margin-inline: 0 !important;
+            }
+
+            .cyberfeed-app .social-actions {
+                justify-self: end;
+                margin-left: 0 !important;
+            }
+        }
+
+
+        .cyberfeed-app .nav-icon-button,
+.cyberfeed-app .soft-action,
+.cyberfeed-app .primary-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 1px solid var(--cv-border);
+            color: var(--cv-text);
+            background: rgba(255, 255, 255, 0.06);
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+        }
+
+
+        .cyberfeed-app .nav-icon-button {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 50%;
+            padding: 0;
+            position: relative;
+        }
+
+
+        .cyberfeed-app .nav-icon-button:hover,
+.cyberfeed-app .nav-icon-button:focus-visible,
+.cyberfeed-app .soft-action:hover,
+.cyberfeed-app .soft-action:focus-visible {
+            color: var(--cv-text);
+            border-color: rgba(34, 211, 238, 0.35);
+            background: rgba(34, 211, 238, 0.09);
+            box-shadow: 0 0 18px rgba(34, 211, 238, 0.14);
+            transform: translateY(-1px);
+        }
+
+
+        .cyberfeed-app .primary-action {
+            border-color: rgba(229, 0, 125, 0.58);
+            background: linear-gradient(135deg, var(--cv-magenta), var(--cv-purple));
+            box-shadow: 0 14px 30px rgba(124, 58, 237, 0.23);
+        }
+
+
+        .cyberfeed-app .primary-action:hover,
+.cyberfeed-app .primary-action:focus-visible {
+            color: var(--cv-text);
+            border-color: rgba(245, 241, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+
+        .cyberfeed-app .soft-action {
+            min-height: 2.5rem;
+            border-radius: 999px;
+            padding: 0.5rem 0.9rem;
+        }
+
+
+        .cyberfeed-app .notification-dot {
+            position: absolute;
+            top: 0.16rem;
+            right: 0.08rem;
+            min-width: 1.08rem;
+            height: 1.08rem;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            border: 2px solid #0d0a14;
+            background: var(--cv-magenta);
+            color: #fff;
+            font-size: 0.66rem;
+            font-weight: 800;
+        }
+
+
+        .cyberfeed-app .avatar {
+            display: inline-grid;
+            place-items: center;
+            flex: 0 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: linear-gradient(135deg, rgba(229, 0, 125, 0.9), rgba(34, 211, 238, 0.68));
+            color: white;
+            font-weight: 800;
+            box-shadow: 0 0 18px rgba(229, 0, 125, 0.16);
+        }
+
+
+        .cyberfeed-app .avatar-sm {
+            width: 2.35rem;
+            height: 2.35rem;
+        }
+
+
+        .cyberfeed-app .avatar-md {
+            width: 3rem;
+            height: 3rem;
+        }
+
+
+        .cyberfeed-app .avatar-lg {
+            width: 5.4rem;
+            height: 5.4rem;
+            font-size: 1.7rem;
+        }
+
+
+        .cyberfeed-app .avatar-xl {
+            width: 10.5rem;
+            height: 10.5rem;
+            border: 5px solid var(--cv-card);
+            font-size: 3.2rem;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.38), 0 0 28px rgba(229, 0, 125, 0.18);
+        }
+
+
+        .cyberfeed-app .avatar img,
+.cyberfeed-app .post-media img,
+.cyberfeed-app .profile-cover img,
+.cyberfeed-app .photo-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        .cyberfeed-app .avatar-button {
+            border: 0;
+            background: transparent;
+            padding: 0;
+        }
+
+
+        .cyberfeed-app .dropdown-menu {
+            --bs-dropdown-bg: #1b1528;
+            --bs-dropdown-border-color: rgba(255, 255, 255, 0.1);
+            --bs-dropdown-link-color: var(--cv-text);
+            --bs-dropdown-link-hover-color: var(--cv-text);
+            --bs-dropdown-link-hover-bg: rgba(229, 0, 125, 0.14);
+            box-shadow: var(--cv-shadow);
+        }
+
+
+        .cyberfeed-app .app-shell {
+            width: min(1480px, 100%);
+            margin: 0 auto;
+            padding: 24px clamp(0.75rem, 2vw, 1.5rem) 3rem;
+        }
+
+
+        .cyberfeed-app [data-view="feed"] > .row {
+            align-items: flex-start;
+        }
+
+
+        .cyberfeed-app .feed-side-column {
+            position: sticky;
+            top: calc(var(--cyberfeed-socialbar-height) + 16px);
+            align-self: flex-start;
+        }
+
+
+        .cyberfeed-app .left-rail,
+.cyberfeed-app .right-rail {
+            position: static;
+        }
+
+
+        .cyberfeed-app .surface-card {
+            border: 1px solid var(--cv-border);
+            border-radius: 1rem;
+            background: rgba(20, 16, 31, 0.9);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .cyberfeed-app .surface-card + .surface-card {
+            margin-top: 1rem;
+        }
+
+
+        .cyberfeed-app .side-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem;
+        }
+
+
+        .cyberfeed-app .side-profile strong,
+.cyberfeed-app .author-button strong,
+.cyberfeed-app .suggestion-name,
+.cyberfeed-app .contact-name {
+            color: var(--cv-text);
+            line-height: 1.15;
+        }
+
+
+        .cyberfeed-app .muted-text {
+            color: var(--cv-muted);
+        }
+
+
+        .cyberfeed-app .side-menu {
+            padding: 0.35rem;
+        }
+
+
+        .cyberfeed-app .side-menu .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-height: 2.75rem;
+            border-radius: 0.85rem;
+            color: var(--cv-muted);
+            border: 1px solid transparent;
+        }
+
+
+        .cyberfeed-app .side-menu .nav-link:hover,
+.cyberfeed-app .side-menu .nav-link.active,
+.cyberfeed-app .side-menu .nav-link:focus-visible {
+            color: var(--cv-text);
+            background: rgba(229, 0, 125, 0.1);
+            border-color: rgba(229, 0, 125, 0.18);
+        }
+
+
+        .cyberfeed-app .composer {
+            padding: 1rem;
+        }
+
+
+        .cyberfeed-app .composer-top {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+
+        .cyberfeed-app .composer-prompt {
+            flex: 1;
+            min-height: 2.8rem;
+            border: 1px solid var(--cv-border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            color: var(--cv-muted);
+            display: flex;
+            align-items: center;
+            padding: 0.55rem 1rem;
+        }
+
+
+        .cyberfeed-app .composer-actions {
+            border-top: 1px solid var(--cv-border);
+            margin-top: 0.95rem;
+            padding-top: 0.8rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+        }
+
+
+        .cyberfeed-app .composer-actions button {
+            border: 0;
+            border-radius: 0.75rem;
+            background: transparent;
+            color: var(--cv-muted);
+            min-height: 2.45rem;
+        }
+
+
+        .cyberfeed-app .composer-actions button:hover,
+.cyberfeed-app .composer-actions button:focus-visible {
+            color: var(--cv-text);
+            background: rgba(255, 255, 255, 0.065);
+        }
+
+
+        .cyberfeed-app .post-card {
+            overflow: hidden;
+        }
+
+
+        .cyberfeed-app .post-header {
+            display: flex;
+            align-items: center;
+            gap: 0.72rem;
+            padding: 1rem 1rem 0;
+        }
+
+
+        .cyberfeed-app .author-button {
+            border: 0;
+            background: transparent;
+            color: inherit;
+            text-align: left;
+            padding: 0;
+        }
+
+
+        .cyberfeed-app .author-button:hover strong,
+.cyberfeed-app .author-button:focus-visible strong {
+            color: var(--cv-cyan);
+        }
+
+
+        .cyberfeed-app .post-menu {
+            margin-left: auto;
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--cv-muted);
+        }
+
+
+        .cyberfeed-app .post-menu:hover,
+.cyberfeed-app .post-menu:focus-visible {
+            color: var(--cv-text);
+            border-color: var(--cv-border);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+
+        .cyberfeed-app .post-body {
+            padding: 0.85rem 1rem 0.4rem;
+        }
+
+
+        .cyberfeed-app .post-body p {
+            margin: 0;
+            color: var(--cv-text);
+            line-height: 1.55;
+        }
+
+
+        .cyberfeed-app .post-media {
+            margin-top: 0.9rem;
+            border-top: 1px solid var(--cv-border);
+            border-bottom: 1px solid var(--cv-border);
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+
+        .cyberfeed-app .post-media.single {
+            aspect-ratio: 16 / 9;
+        }
+
+
+        .cyberfeed-app .post-media.grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.25rem;
+            padding: 0.25rem;
+        }
+
+
+        .cyberfeed-app .post-media.grid .grid-shot {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 0.65rem;
+            background: #100c19;
+        }
+
+
+        .cyberfeed-app .post-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.6rem 1rem;
+            color: var(--cv-muted);
+            font-size: 0.93rem;
+        }
+
+
+        .cyberfeed-app .reaction-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.38rem;
+            height: 1.38rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cv-magenta), var(--cv-purple));
+            color: white;
+            font-size: 0.75rem;
+            margin-right: 0.35rem;
+        }
+
+
+        .cyberfeed-app .post-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--cv-border);
+            padding: 0.35rem 0.6rem;
+        }
+
+
+        .cyberfeed-app .post-actions button {
+            min-height: 2.55rem;
+            border: 0;
+            border-radius: 0.72rem;
+            background: transparent;
+            color: var(--cv-muted);
+            font-weight: 650;
+        }
+
+
+        .cyberfeed-app .post-actions button:hover,
+.cyberfeed-app .post-actions button:focus-visible {
+            color: var(--cv-text);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+
+        .cyberfeed-app .post-actions button.is-liked {
+            color: var(--cv-magenta);
+        }
+
+
+        .cyberfeed-app .comments-preview {
+            border-top: 1px solid var(--cv-border);
+            padding: 0.8rem 1rem 1rem;
+        }
+
+
+        .cyberfeed-app .comment-row {
+            display: flex;
+            gap: 0.55rem;
+            align-items: flex-start;
+        }
+
+
+        .cyberfeed-app .comment-bubble {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 0.9rem;
+            padding: 0.55rem 0.75rem;
+            min-width: 0;
+        }
+
+
+        .cyberfeed-app .comment-box {
+            margin-top: 0.75rem;
+        }
+
+
+        .cyberfeed-app .comment-box[hidden] {
+            display: none !important;
+        }
+
+
+        .cyberfeed-app .comment-box input {
+            width: 100%;
+            border: 1px solid var(--cv-border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            color: var(--cv-text);
+            min-height: 2.4rem;
+            padding: 0.45rem 0.85rem;
+        }
+
+
+        .cyberfeed-app .right-panel {
+            padding: 1rem;
+        }
+
+
+        .cyberfeed-app .panel-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+
+        .cyberfeed-app .panel-title h2 {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+
+        .cyberfeed-app .suggestion-row {
+            display: grid;
+            grid-template-columns: 44px minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 0.7rem;
+            min-width: 0;
+            padding: 0.55rem 0;
+        }
+
+
+.cyberfeed-app .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.55rem 0;
+        }
+
+
+        .cyberfeed-app .suggestion-row + .suggestion-row,
+.cyberfeed-app .contact-row + .contact-row {
+            border-top: 1px solid var(--cv-border);
+        }
+
+
+        .cyberfeed-app .suggestion-row .btn {
+            flex-shrink: 0;
+            min-width: 0;
+            padding-inline: 0.72rem;
+            white-space: nowrap;
+        }
+
+
+        .cyberfeed-app .suggestion-row .author-button {
+            min-width: 0;
+            overflow: hidden;
+        }
+
+
+        .cyberfeed-app .suggestion-row .suggestion-name,
+        .cyberfeed-app .suggestion-row .muted-text {
+            display: block;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+
+        .cyberfeed-app .online-wrap {
+            position: relative;
+        }
+
+
+        .cyberfeed-app .online-dot {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 0.74rem;
+            height: 0.74rem;
+            border-radius: 50%;
+            border: 2px solid var(--cv-card);
+            background: #22c55e;
+        }
+
+
+        .cyberfeed-app .trend-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            border-radius: 999px;
+            border: 1px solid var(--cv-border);
+            color: var(--cv-muted);
+            padding: 0.45rem 0.7rem;
+            margin: 0.25rem 0.2rem 0 0;
+            background: rgba(255, 255, 255, 0.045);
+        }
+
+
+        .cyberfeed-app .app-view[hidden] {
+            display: none !important;
+        }
+
+
+        .cyberfeed-app .profile-page {
+            width: min(1160px, 100%);
+            margin: 0 auto;
+        }
+
+
+        .cyberfeed-app .profile-hero {
+            overflow: hidden;
+        }
+
+
+        .cyberfeed-app .profile-cover {
+            height: 280px;
+            overflow: hidden;
+            background: #100c19;
+        }
+
+
+        .cyberfeed-app .profile-cover img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+        }
+
+
+        .cyberfeed-app .profile-identity {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            gap: 1.1rem;
+            align-items: end;
+            padding: 0 1.25rem 1.25rem;
+            margin-top: -4.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .cyberfeed-app .profile-text {
+            min-width: 0;
+            padding-top: 4.75rem;
+        }
+
+
+        .cyberfeed-app .profile-text h1 {
+            margin: 0;
+            max-width: 100%;
+            color: var(--cv-text);
+            font-size: clamp(1.5rem, 2.8vw, 2rem);
+            line-height: 1.08;
+            overflow-wrap: anywhere;
+        }
+
+
+        .cyberfeed-app .profile-text p {
+            margin: 0.3rem 0 0;
+            color: var(--cv-muted);
+        }
+
+
+        .cyberfeed-app .profile-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            justify-content: flex-end;
+            padding-bottom: 0.18rem;
+        }
+
+
+        .cyberfeed-app .profile-tabs {
+            border-top: 1px solid var(--cv-border);
+            border-bottom: 0;
+            padding: 0.25rem 1rem 0;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            scrollbar-width: thin;
+        }
+
+
+        .cyberfeed-app .profile-tabs .nav-link {
+            color: var(--cv-muted);
+            border: 0;
+            border-bottom: 3px solid transparent;
+            border-radius: 0;
+            white-space: nowrap;
+            font-weight: 700;
+            min-height: 3.2rem;
+        }
+
+
+        .cyberfeed-app .profile-tabs .nav-link:hover,
+.cyberfeed-app .profile-tabs .nav-link:focus-visible {
+            color: var(--cv-text);
+        }
+
+
+        .cyberfeed-app .profile-tabs .nav-link.active {
+            color: var(--cv-text);
+            background: transparent;
+            border-color: var(--cv-magenta);
+        }
+
+
+        .cyberfeed-app .profile-content {
+            margin-top: 0;
+            padding-top: 24px;
+        }
+
+
+        .cyberfeed-app .intro-list,
+.cyberfeed-app .about-list {
+            display: grid;
+            gap: 0.72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+
+        .cyberfeed-app .intro-list li,
+.cyberfeed-app .about-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            color: var(--cv-muted);
+        }
+
+
+        .cyberfeed-app .intro-list i,
+.cyberfeed-app .about-list i {
+            color: var(--cv-cyan);
+        }
+
+
+        .cyberfeed-app .friends-grid,
+.cyberfeed-app .cyberfeed-profile-gallery {
+            display: grid;
+            gap: 0.55rem;
+        }
+
+
+        .cyberfeed-app .friends-grid {
+            grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+        }
+
+
+        .cyberfeed-app .friend-card {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            border: 1px solid var(--cv-border);
+            border-radius: 0.85rem;
+            background: rgba(255, 255, 255, 0.045);
+            padding: 0.65rem;
+            min-width: 0;
+        }
+
+
+        .cyberfeed-app .friend-card span:last-child {
+            min-width: 0;
+            overflow-wrap: anywhere;
+            font-weight: 700;
+        }
+
+
+        /* Galeria exclusiva da aba Fotos. */
+        .cyberfeed-app .cyberfeed-profile-gallery {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+
+        .cyberfeed-app .cyberfeed-profile-gallery img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            aspect-ratio: 1 / 1;
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid var(--cv-border);
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+
+        .cyberfeed-app .mobile-search {
+            width: 100%;
+            margin-top: 0.7rem;
+        }
+
+
+        .cyberfeed-app .offcanvas {
+            background: #14101f;
+            color: var(--cv-text);
+        }
+
+
+        .cyberfeed-app .btn-close {
+            filter: invert(1) grayscale(1);
+        }
+
+
+        @media (max-width: 1199.98px) {
+.cyberfeed-app .right-rail {
+                display: none;
+            }
+}
+
+
+        @media (max-width: 991.98px) {
+.cyberfeed-app {
+                --cv-navbar-height: 66px;
+                --cyberfeed-socialbar-height: 72px;
+            }
+
+
+            .cyberfeed-app .feed-side-column,
+            .cyberfeed-app .left-rail {
+                position: static;
+            }
+
+
+            .cyberfeed-app .app-shell {
+                padding-top: 24px;
+            }
+
+
+            .cyberfeed-app .desktop-search {
+                display: none;
+            }
+
+
+            .cyberfeed-app .mobile-search {
+                display: none !important;
+            }
+
+
+            .cyberfeed-app .profile-cover {
+                height: 220px;
+            }
+}
+
+
+        @media (max-width: 767.98px) {
+.cyberfeed-app .brand-mark span:last-child {
+                display: none;
+            }
+
+
+            .cyberfeed-app .nav-icon-button {
+                width: 2.45rem;
+                height: 2.45rem;
+            }
+
+
+            .cyberfeed-app .composer-actions {
+                grid-template-columns: 1fr;
+            }
+
+
+            .cyberfeed-app .post-actions button {
+                font-size: 0.9rem;
+            }
+
+
+            .cyberfeed-app .post-stats {
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+
+
+            .cyberfeed-app .profile-identity {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+                gap: 0.7rem;
+                margin-top: -3.45rem;
+                padding-inline: 1rem;
+            }
+
+
+            .cyberfeed-app .profile-text {
+                padding-top: 0;
+            }
+
+
+            .cyberfeed-app .avatar-xl {
+                width: 7.2rem;
+                height: 7.2rem;
+                font-size: 2.2rem;
+                border-width: 4px;
+            }
+
+
+            .cyberfeed-app .profile-actions {
+                justify-content: center;
+                width: 100%;
+            }
+
+
+            .cyberfeed-app .profile-actions .btn {
+                flex: 1 1 auto;
+            }
+
+
+            .cyberfeed-app .profile-cover {
+                height: 170px;
+            }
+}
+
+
+        @media (max-width: 420px) {
+.cyberfeed-app .app-shell {
+                padding-inline: 0.55rem;
+            }
+
+
+            .cyberfeed-app .surface-card {
+                border-radius: 0.85rem;
+            }
+
+
+            .cyberfeed-app .post-header,
+.cyberfeed-app .post-body,
+.cyberfeed-app .comments-preview,
+.cyberfeed-app .composer,
+.cyberfeed-app .right-panel {
+                padding-inline: 0.78rem;
+            }
+
+
+            .cyberfeed-app .suggestion-row .btn {
+                padding-inline: 0.6rem;
+            }
+}
+
+
+        @media (max-width: 768px) {
+            .cyberfeed-app .cyberfeed-profile-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+
+            .cyberfeed-app .profile-identity {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+                gap: 0.7rem;
+                margin-top: -3.45rem;
+                padding-inline: 1rem;
+            }
+
+
+            .cyberfeed-app .profile-text {
+                padding-top: 0;
+            }
+
+
+            .cyberfeed-app .avatar-xl {
+                width: 7.2rem;
+                height: 7.2rem;
+                font-size: 2.2rem;
+                border-width: 4px;
+            }
+
+
+            .cyberfeed-app .profile-actions {
+                justify-content: center;
+                width: 100%;
+            }
+
+
+            .cyberfeed-app .profile-actions .btn {
+                flex: 1 1 auto;
+            }
+        }
+
+
+/* Revisao responsiva mobile-first da CyberFeed. */
+.cyberfeed-page,
+.cyberfeed-page body,
+.cyberfeed-page #naves-container {
+            max-width: 100vw;
+            overflow-x: clip;
+        }
+
+
+.cyberfeed-page #naves-container {
+            pointer-events: none;
+        }
+
+
+.cyberfeed-app .mobile-bottom-nav,
+.cyberfeed-app .mobile-more-menu,
+.cyberfeed-app .mobile-search-trigger {
+            display: none;
+        }
+
+
+.cyberfeed-app .mobile-feedback {
+            position: fixed;
+            left: 50%;
+            bottom: calc(88px + env(safe-area-inset-bottom));
+            z-index: 60;
+            margin: 0;
+            transform: translateX(-50%);
+            border: 1px solid rgba(34, 211, 238, 0.35);
+            border-radius: 999px;
+            background: rgba(13, 10, 20, 0.96);
+            color: var(--cv-text);
+            padding: 0.48rem 0.85rem;
+            box-shadow: 0 16px 34px rgba(0, 0, 0, 0.34);
+        }
+
+
+/* Mantem a CyberFeed abaixo do drawer global. */
+@media (max-width: 768px) {
+            .cyberfeed-page .cyberfeed-app .prototype-navbar {
+                z-index: 1100;
+            }
+
+
+            .cyberfeed-page .cyberfeed-app .mobile-bottom-nav {
+                z-index: 1000;
+            }
+
+
+            .cyberfeed-page #header-pagina .site-logo-image {
+                height: 30px;
+                max-width: 120px;
+            }
+        }
+
+
+.cyberfeed-app .prototype-navbar .avatar-button {
+            min-width: 44px;
+            min-height: 44px;
+            display: inline-grid;
+            place-items: center;
+        }
+
+
+.cyberfeed-app button:focus-visible,
+.cyberfeed-app input:focus-visible {
+            outline: 2px solid rgba(34, 211, 238, 0.8);
+            outline-offset: 2px;
+        }
+
+
+@media (max-width: 991.98px) {
+            .cyberfeed-app .social-menu-button {
+                display: none !important;
+            }
+
+
+            .cyberfeed-app [data-view="feed"] > .row {
+                --bs-gutter-x: 1rem;
+            }
+        }
+
+
+@media (max-width: 767.98px) {
+            .cyberfeed-app {
+                --cyberfeed-socialbar-height: 64px;
+            }
+
+
+            .cyberfeed-app .prototype-navbar {
+                min-height: var(--cyberfeed-socialbar-height);
+                padding-block: 0.32rem;
+            }
+
+
+            .cyberfeed-app .prototype-navbar .container-fluid {
+                flex-wrap: wrap;
+                row-gap: 0.42rem;
+                padding-inline: 0.55rem !important;
+            }
+
+
+            .cyberfeed-app .brand-mark {
+                min-height: 44px;
+                gap: 0.42rem;
+                flex: 1 1 auto;
+                min-width: 0;
+                font-size: 0.95rem;
+            }
+
+
+            .cyberfeed-app .brand-mark span:first-child {
+                width: 2.25rem;
+                height: 2.25rem;
+            }
+
+
+            .cyberfeed-app .brand-mark span:last-child {
+                display: inline;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+
+            .cyberfeed-app .social-actions {
+                gap: 0.28rem !important;
+                flex: 0 0 auto;
+            }
+
+
+            .cyberfeed-app .mobile-search-trigger {
+                display: inline-flex;
+            }
+
+
+            .cyberfeed-app .mobile-home-button {
+                display: none;
+            }
+
+
+            .cyberfeed-app .nav-icon-button {
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+
+            .cyberfeed-app .desktop-search {
+                display: none !important;
+            }
+
+
+            .cyberfeed-app .mobile-search {
+                order: 3;
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                display: block !important;
+            }
+
+
+            .cyberfeed-app .mobile-search[hidden] {
+                display: none !important;
+            }
+
+
+            .cyberfeed-app .mobile-search input {
+                min-height: 42px;
+                padding-right: 3rem;
+            }
+
+
+            .cyberfeed-app .mobile-search-close {
+                position: absolute;
+                top: 50%;
+                right: 0.35rem;
+                transform: translateY(-50%);
+                display: grid;
+                place-items: center;
+                width: 36px;
+                height: 36px;
+                border: 0;
+                border-radius: 50%;
+                background: transparent;
+                color: var(--cv-muted);
+            }
+
+
+            .cyberfeed-app .app-shell {
+                width: 100%;
+                padding: 16px 0.55rem calc(80px + env(safe-area-inset-bottom));
+            }
+
+
+            .cyberfeed-page footer {
+                padding-bottom: calc(96px + env(safe-area-inset-bottom));
+            }
+
+
+            .cyberfeed-app [data-view="feed"] > .row,
+            .cyberfeed-app .profile-content .row {
+                --bs-gutter-x: 0;
+                --bs-gutter-y: 0.9rem;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+
+            .cyberfeed-app [data-view="feed"] > .row > *,
+            .cyberfeed-app .profile-content .row > * {
+                padding-left: 0;
+                padding-right: 0;
+                min-width: 0;
+            }
+
+
+            .cyberfeed-app .surface-card {
+                border-radius: 0.85rem;
+            }
+
+
+            .cyberfeed-app .composer {
+                padding: 0.78rem;
+            }
+
+
+            .cyberfeed-app .composer-top {
+                gap: 0.55rem;
+            }
+
+
+            .cyberfeed-app .composer .avatar-md,
+            .cyberfeed-app .post-header .avatar-md {
+                width: 42px;
+                height: 42px;
+            }
+
+
+            .cyberfeed-app .composer-prompt {
+                min-width: 0;
+                min-height: 42px;
+                padding-inline: 0.78rem;
+                font-size: 0.92rem;
+            }
+
+
+            .cyberfeed-app .composer-actions {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 0.28rem;
+                margin-top: 0.72rem;
+                padding-top: 0.62rem;
+            }
+
+
+            .cyberfeed-app .composer-actions button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 0;
+                min-height: 2.25rem;
+                padding-inline: 0.28rem;
+                white-space: nowrap;
+                font-size: 0.84rem;
+            }
+
+
+            .cyberfeed-app .composer-actions button i,
+            .cyberfeed-app .post-actions button i {
+                margin-right: 0.25rem !important;
+            }
+
+
+            .cyberfeed-app .post-header {
+                gap: 0.55rem;
+                padding: 0.82rem 0.82rem 0;
+            }
+
+
+            .cyberfeed-app .author-button {
+                flex: 1 1 auto;
+                min-width: 0;
+            }
+
+
+            .cyberfeed-app .author-button strong,
+            .cyberfeed-app .author-button .muted-text {
+                display: block;
+                min-width: 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+
+            .cyberfeed-app .post-menu {
+                width: 40px;
+                height: 40px;
+                flex: 0 0 auto;
+            }
+
+
+            .cyberfeed-app .post-body {
+                padding: 0.74rem 0.82rem 0.35rem;
+            }
+
+
+            .cyberfeed-app .post-body p {
+                overflow-wrap: anywhere;
+            }
+
+
+            .cyberfeed-app .post-stats {
+                flex-wrap: wrap;
+                flex-direction: row;
+                gap: 0.35rem 0.75rem;
+                padding: 0.55rem 0.82rem;
+                font-size: 0.84rem;
+            }
+
+
+            .cyberfeed-app .post-actions {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                padding: 0.28rem 0.32rem;
+            }
+
+
+            .cyberfeed-app .post-actions button {
+                min-width: 0;
+                min-height: 42px;
+                padding-inline: 0.18rem;
+                white-space: nowrap;
+                font-size: 0.82rem;
+            }
+
+
+            .cyberfeed-app .comments-preview {
+                padding: 0.72rem 0.82rem 0.82rem;
+            }
+
+
+            .cyberfeed-app .comment-row,
+            .cyberfeed-app .comment-bubble {
+                min-width: 0;
+            }
+
+
+            .cyberfeed-app .post-media img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+
+            .cyberfeed-app .profile-page {
+                width: 100%;
+            }
+
+
+            .cyberfeed-app .profile-cover {
+                height: 170px;
+            }
+
+
+            .cyberfeed-app .profile-identity {
+                grid-template-columns: auto minmax(0, 1fr);
+                align-items: start;
+                justify-items: stretch;
+                text-align: left;
+                gap: 0.75rem;
+                margin-top: -3.15rem;
+                padding: 0 0.82rem 0.92rem;
+            }
+
+
+            .cyberfeed-app .avatar-xl {
+                width: 96px;
+                height: 96px;
+                font-size: 1.9rem;
+                border-width: 4px;
+            }
+
+
+            .cyberfeed-app .profile-text {
+                min-width: 0;
+                padding-top: 3.5rem;
+            }
+
+
+            .cyberfeed-app .profile-text h1 {
+                font-size: 1.45rem;
+            }
+
+
+            .cyberfeed-app .profile-text p {
+                font-size: 0.9rem;
+                overflow-wrap: anywhere;
+            }
+
+
+            .cyberfeed-app .profile-actions {
+                grid-column: 1 / -1;
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                justify-content: stretch;
+                width: 100%;
+                padding-bottom: 0;
+            }
+
+
+            .cyberfeed-app .profile-actions .btn {
+                min-width: 0;
+                min-height: 42px;
+            }
+
+
+            .cyberfeed-app .profile-tabs {
+                max-width: 100%;
+                overflow-x: auto;
+                overflow-y: hidden;
+                flex-wrap: nowrap;
+                padding-inline: 0.55rem;
+                scrollbar-width: none;
+            }
+
+
+            .cyberfeed-app .profile-tabs::-webkit-scrollbar {
+                display: none;
+            }
+
+
+            .cyberfeed-app .profile-tabs .nav-link {
+                min-height: 44px;
+                padding-inline: 0.82rem;
+                font-size: 0.9rem;
+            }
+
+
+            .cyberfeed-app .profile-content {
+                padding-top: 16px;
+            }
+
+
+            .cyberfeed-app .right-panel {
+                padding: 0.86rem;
+            }
+
+
+            .cyberfeed-app .cyberfeed-profile-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+            }
+
+
+            .cyberfeed-app .mobile-bottom-nav {
+                position: fixed;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 50;
+                display: grid;
+                grid-template-columns: repeat(5, minmax(0, 1fr));
+                gap: 0;
+                padding: 0.4rem 0.35rem calc(0.45rem + env(safe-area-inset-bottom));
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                background: rgba(13, 10, 20, 0.98);
+                box-shadow: 0 -16px 32px rgba(0, 0, 0, 0.32);
+            }
+
+
+            .cyberfeed-app .mobile-bottom-nav button {
+                display: grid;
+                place-items: center;
+                gap: 0.12rem;
+                min-width: 0;
+                min-height: 52px;
+                border: 1px solid transparent;
+                border-radius: 0.8rem;
+                background: transparent;
+                color: var(--cv-muted);
+                font-size: 0.68rem;
+                font-weight: 700;
+            }
+
+
+            .cyberfeed-app .mobile-bottom-nav i {
+                font-size: 1.1rem;
+            }
+
+
+            .cyberfeed-app .mobile-bottom-nav button.active,
+            .cyberfeed-app .mobile-bottom-nav button:focus-visible {
+                color: var(--cv-text);
+                border-color: rgba(229, 0, 125, 0.26);
+                background: rgba(229, 0, 125, 0.12);
+            }
+        }
+
+
+@media (max-width: 375px) {
+            .cyberfeed-app .prototype-navbar .container-fluid {
+                padding-inline: 0.42rem !important;
+            }
+
+
+            .cyberfeed-app .brand-mark {
+                font-size: 0.88rem;
+            }
+
+
+            .cyberfeed-app .brand-mark span:first-child {
+                width: 2rem;
+                height: 2rem;
+            }
+
+
+            .cyberfeed-app .direct-message-button,
+            .cyberfeed-app .mobile-search-trigger {
+                display: none;
+            }
+
+
+            .cyberfeed-app .mobile-more-menu {
+                display: block;
+            }
+
+
+            .cyberfeed-app .social-actions {
+                gap: 0.2rem !important;
+            }
+
+
+            .cyberfeed-app .composer-actions button {
+                font-size: 0.76rem;
+            }
+
+
+            .cyberfeed-app .post-actions button {
+                font-size: 0.74rem;
+            }
+
+
+            .cyberfeed-app .profile-cover {
+                height: 158px;
+            }
+
+
+            .cyberfeed-app .avatar-xl {
+                width: 88px;
+                height: 88px;
+            }
+
+
+        }

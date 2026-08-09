@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberFeed - Protótipo visual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        /* Tema visual isolado do protótipo. */
+        :root {
+            --cv-bg: #0d0a14;
+            --cv-card: #14101f;
+            --cv-elevated: #1b1528;
+            --cv-text: #f5f1ff;
+            --cv-muted: #aaa2b8;
+            --cv-magenta: #e5007d;
+            --cv-purple: #7c3aed;
+            --cv-cyan: #22d3ee;
+            --cv-border: rgba(255, 255, 255, 0.08);
+            --cv-border-strong: rgba(229, 0, 125, 0.42);
+            --cv-shadow: 0 22px 55px rgba(0, 0, 0, 0.35);
+            --cv-navbar-height: 72px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at top left, rgba(229, 0, 125, 0.16), transparent 28rem),
+                radial-gradient(circle at top right, rgba(34, 211, 238, 0.11), transparent 26rem),
+                linear-gradient(180deg, #0d0a14 0%, #100c19 48%, #0d0a14 100%);
+            color: var(--cv-text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            padding-top: var(--cv-navbar-height);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        .prototype-navbar {
+            min-height: var(--cv-navbar-height);
+            border-bottom: 1px solid var(--cv-border);
+            background: rgba(13, 10, 20, 0.86);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
+        }
+
+        .brand-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.62rem;
+            color: var(--cv-text);
+            font-weight: 800;
+            letter-spacing: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .brand-mark span:first-child {
+            display: grid;
+            place-items: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cv-magenta), var(--cv-purple));
+            box-shadow: 0 0 24px rgba(229, 0, 125, 0.38);
+        }
+
+        .nav-search {
+            width: min(36rem, 42vw);
+            position: relative;
+        }
+
+        .nav-search i {
+            position: absolute;
+            top: 50%;
+            left: 1rem;
+            transform: translateY(-50%);
+            color: var(--cv-muted);
+        }
+
+        .nav-search input {
+            width: 100%;
+            min-height: 2.75rem;
+            border: 1px solid var(--cv-border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            color: var(--cv-text);
+            padding: 0.65rem 1rem 0.65rem 2.8rem;
+            outline: none;
+        }
+
+        .nav-search input:focus {
+            border-color: rgba(34, 211, 238, 0.45);
+            box-shadow: 0 0 0 0.22rem rgba(34, 211, 238, 0.11);
+        }
+
+        .nav-icon-button,
+        .soft-action,
+        .primary-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 1px solid var(--cv-border);
+            color: var(--cv-text);
+            background: rgba(255, 255, 255, 0.06);
+            transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+        }
+
+        .nav-icon-button {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 50%;
+            padding: 0;
+            position: relative;
+        }
+
+        .nav-icon-button:hover,
+        .nav-icon-button:focus-visible,
+        .soft-action:hover,
+        .soft-action:focus-visible {
+            color: var(--cv-text);
+            border-color: rgba(34, 211, 238, 0.35);
+            background: rgba(34, 211, 238, 0.09);
+            box-shadow: 0 0 18px rgba(34, 211, 238, 0.14);
+            transform: translateY(-1px);
+        }
+
+        .primary-action {
+            border-color: rgba(229, 0, 125, 0.58);
+            background: linear-gradient(135deg, var(--cv-magenta), var(--cv-purple));
+            box-shadow: 0 14px 30px rgba(124, 58, 237, 0.23);
+        }
+
+        .primary-action:hover,
+        .primary-action:focus-visible {
+            color: var(--cv-text);
+            border-color: rgba(245, 241, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .soft-action {
+            min-height: 2.5rem;
+            border-radius: 999px;
+            padding: 0.5rem 0.9rem;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 0.16rem;
+            right: 0.08rem;
+            min-width: 1.08rem;
+            height: 1.08rem;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            border: 2px solid #0d0a14;
+            background: var(--cv-magenta);
+            color: #fff;
+            font-size: 0.66rem;
+            font-weight: 800;
+        }
+
+        .avatar {
+            display: inline-grid;
+            place-items: center;
+            flex: 0 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: linear-gradient(135deg, rgba(229, 0, 125, 0.9), rgba(34, 211, 238, 0.68));
+            color: white;
+            font-weight: 800;
+            box-shadow: 0 0 18px rgba(229, 0, 125, 0.16);
+        }
+
+        .avatar-sm {
+            width: 2.35rem;
+            height: 2.35rem;
+        }
+
+        .avatar-md {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .avatar-lg {
+            width: 5.4rem;
+            height: 5.4rem;
+            font-size: 1.7rem;
+        }
+
+        .avatar-xl {
+            width: 10.5rem;
+            height: 10.5rem;
+            border: 5px solid var(--cv-card);
+            font-size: 3.2rem;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.38), 0 0 28px rgba(229, 0, 125, 0.18);
+        }
+
+        .avatar img,
+        .post-media img,
+        .profile-cover img,
+        .photo-tile img,
+        .mini-photo-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .avatar-button {
+            border: 0;
+            background: transparent;
+            padding: 0;
+        }
+
+        .dropdown-menu {
+            --bs-dropdown-bg: #1b1528;
+            --bs-dropdown-border-color: rgba(255, 255, 255, 0.1);
+            --bs-dropdown-link-color: var(--cv-text);
+            --bs-dropdown-link-hover-color: var(--cv-text);
+            --bs-dropdown-link-hover-bg: rgba(229, 0, 125, 0.14);
+            box-shadow: var(--cv-shadow);
+        }
+
+        .app-shell {
+            width: min(1480px, 100%);
+            margin: 0 auto;
+            padding: 1.25rem clamp(0.75rem, 2vw, 1.5rem) 3rem;
+        }
+
+        .left-rail,
+        .right-rail {
+            position: sticky;
+            top: calc(var(--cv-navbar-height) + 1rem);
+        }
+
+        .surface-card {
+            border: 1px solid var(--cv-border);
+            border-radius: 1rem;
+            background: rgba(20, 16, 31, 0.9);
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.2);
+        }
+
+        .surface-card + .surface-card {
+            margin-top: 1rem;
+        }
+
+        .side-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem;
+        }
+
+        .side-profile strong,
+        .author-button strong,
+        .suggestion-name,
+        .contact-name {
+            color: var(--cv-text);
+            line-height: 1.15;
+        }
+
+        .muted-text {
+            color: var(--cv-muted);
+        }
+
+        .side-menu {
+            padding: 0.35rem;
+        }
+
+        .side-menu .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            min-height: 2.75rem;
+            border-radius: 0.85rem;
+            color: var(--cv-muted);
+            border: 1px solid transparent;
+        }
+
+        .side-menu .nav-link:hover,
+        .side-menu .nav-link.active,
+        .side-menu .nav-link:focus-visible {
+            color: var(--cv-text);
+            background: rgba(229, 0, 125, 0.1);
+            border-color: rgba(229, 0, 125, 0.18);
+        }
+
+        .composer {
+            padding: 1rem;
+        }
+
+        .composer-top {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .composer-prompt {
+            flex: 1;
+            min-height: 2.8rem;
+            border: 1px solid var(--cv-border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            color: var(--cv-muted);
+            display: flex;
+            align-items: center;
+            padding: 0.55rem 1rem;
+        }
+
+        .composer-actions {
+            border-top: 1px solid var(--cv-border);
+            margin-top: 0.95rem;
+            padding-top: 0.8rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+        }
+
+        .composer-actions button {
+            border: 0;
+            border-radius: 0.75rem;
+            background: transparent;
+            color: var(--cv-muted);
+            min-height: 2.45rem;
+        }
+
+        .composer-actions button:hover,
+        .composer-actions button:focus-visible {
+            color: var(--cv-text);
+            background: rgba(255, 255, 255, 0.065);
+        }
+
+        .post-card {
+            overflow: hidden;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 0.72rem;
+            padding: 1rem 1rem 0;
+        }
+
+        .author-button {
+            border: 0;
+            background: transparent;
+            color: inherit;
+            text-align: left;
+            padding: 0;
+        }
+
+        .author-button:hover strong,
+        .author-button:focus-visible strong {
+            color: var(--cv-cyan);
+        }
+
+        .post-menu {
+            margin-left: auto;
+            width: 2.2rem;
+            height: 2.2rem;
+            border-radius: 50%;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--cv-muted);
+        }
+
+        .post-menu:hover,
+        .post-menu:focus-visible {
+            color: var(--cv-text);
+            border-color: var(--cv-border);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .post-body {
+            padding: 0.85rem 1rem 0.4rem;
+        }
+
+        .post-body p {
+            margin: 0;
+            color: var(--cv-text);
+            line-height: 1.55;
+        }
+
+        .post-media {
+            margin-top: 0.9rem;
+            border-top: 1px solid var(--cv-border);
+            border-bottom: 1px solid var(--cv-border);
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+        .post-media.single {
+            aspect-ratio: 16 / 9;
+        }
+
+        .post-media.grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.25rem;
+            padding: 0.25rem;
+        }
+
+        .post-media.grid .grid-shot {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 0.65rem;
+            background: #100c19;
+        }
+
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.6rem 1rem;
+            color: var(--cv-muted);
+            font-size: 0.93rem;
+        }
+
+        .reaction-mark {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.38rem;
+            height: 1.38rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cv-magenta), var(--cv-purple));
+            color: white;
+            font-size: 0.75rem;
+            margin-right: 0.35rem;
+        }
+
+        .post-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--cv-border);
+            padding: 0.35rem 0.6rem;
+        }
+
+        .post-actions button {
+            min-height: 2.55rem;
+            border: 0;
+            border-radius: 0.72rem;
+            background: transparent;
+            color: var(--cv-muted);
+            font-weight: 650;
+        }
+
+        .post-actions button:hover,
+        .post-actions button:focus-visible {
+            color: var(--cv-text);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .post-actions button.is-liked {
+            color: var(--cv-magenta);
+        }
+
+        .comments-preview {
+            border-top: 1px solid var(--cv-border);
+            padding: 0.8rem 1rem 1rem;
+        }
+
+        .comment-row {
+            display: flex;
+            gap: 0.55rem;
+            align-items: flex-start;
+        }
+
+        .comment-bubble {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 0.9rem;
+            padding: 0.55rem 0.75rem;
+            min-width: 0;
+        }
+
+        .comment-box {
+            margin-top: 0.75rem;
+        }
+
+        .comment-box[hidden] {
+            display: none !important;
+        }
+
+        .comment-box input {
+            width: 100%;
+            border: 1px solid var(--cv-border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.055);
+            color: var(--cv-text);
+            min-height: 2.4rem;
+            padding: 0.45rem 0.85rem;
+        }
+
+        .right-panel {
+            padding: 1rem;
+        }
+
+        .panel-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .panel-title h2 {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .suggestion-row,
+        .contact-row {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.55rem 0;
+        }
+
+        .suggestion-row + .suggestion-row,
+        .contact-row + .contact-row {
+            border-top: 1px solid var(--cv-border);
+        }
+
+        .suggestion-row .btn {
+            margin-left: auto;
+            min-width: 6.2rem;
+        }
+
+        .online-wrap {
+            position: relative;
+        }
+
+        .online-dot {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 0.74rem;
+            height: 0.74rem;
+            border-radius: 50%;
+            border: 2px solid var(--cv-card);
+            background: #22c55e;
+        }
+
+        .trend-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            border-radius: 999px;
+            border: 1px solid var(--cv-border);
+            color: var(--cv-muted);
+            padding: 0.45rem 0.7rem;
+            margin: 0.25rem 0.2rem 0 0;
+            background: rgba(255, 255, 255, 0.045);
+        }
+
+        .app-view[hidden] {
+            display: none !important;
+        }
+
+        .profile-page {
+            width: min(1160px, 100%);
+            margin: 0 auto;
+        }
+
+        .profile-back-row {
+            margin-bottom: 1rem;
+        }
+
+        .profile-hero {
+            overflow: hidden;
+        }
+
+        .profile-cover {
+            height: clamp(13rem, 28vw, 23rem);
+            background: #100c19;
+        }
+
+        .profile-identity {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            gap: 1.1rem;
+            align-items: end;
+            padding: 0 1.25rem 1.25rem;
+            margin-top: -4.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-text {
+            min-width: 0;
+            padding-top: 4.75rem;
+        }
+
+        .profile-text h1 {
+            margin: 0;
+            max-width: 100%;
+            color: var(--cv-text);
+            font-size: clamp(1.5rem, 2.8vw, 2rem);
+            line-height: 1.08;
+            overflow-wrap: anywhere;
+        }
+
+        .profile-text p {
+            margin: 0.3rem 0 0;
+            color: var(--cv-muted);
+        }
+
+        .profile-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            justify-content: flex-end;
+            padding-bottom: 0.18rem;
+        }
+
+        .profile-tabs {
+            border-top: 1px solid var(--cv-border);
+            border-bottom: 0;
+            padding: 0.25rem 1rem 0;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            scrollbar-width: thin;
+        }
+
+        .profile-tabs .nav-link {
+            color: var(--cv-muted);
+            border: 0;
+            border-bottom: 3px solid transparent;
+            border-radius: 0;
+            white-space: nowrap;
+            font-weight: 700;
+            min-height: 3.2rem;
+        }
+
+        .profile-tabs .nav-link:hover,
+        .profile-tabs .nav-link:focus-visible {
+            color: var(--cv-text);
+        }
+
+        .profile-tabs .nav-link.active {
+            color: var(--cv-text);
+            background: transparent;
+            border-color: var(--cv-magenta);
+        }
+
+        .profile-content {
+            margin-top: 1rem;
+        }
+
+        .intro-list,
+        .about-list {
+            display: grid;
+            gap: 0.72rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .intro-list li,
+        .about-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            color: var(--cv-muted);
+        }
+
+        .intro-list i,
+        .about-list i {
+            color: var(--cv-cyan);
+        }
+
+        .mini-photo-grid,
+        .friends-grid,
+        .photos-grid {
+            display: grid;
+            gap: 0.55rem;
+        }
+
+        .mini-photo-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .mini-photo-grid img,
+        .photos-grid img {
+            aspect-ratio: 1 / 1;
+            border-radius: 0.65rem;
+            object-fit: cover;
+            border: 1px solid var(--cv-border);
+        }
+
+        .friends-grid {
+            grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+        }
+
+        .friend-card {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            border: 1px solid var(--cv-border);
+            border-radius: 0.85rem;
+            background: rgba(255, 255, 255, 0.045);
+            padding: 0.65rem;
+            min-width: 0;
+        }
+
+        .friend-card span:last-child {
+            min-width: 0;
+            overflow-wrap: anywhere;
+            font-weight: 700;
+        }
+
+        .photos-grid {
+            grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+        }
+
+        .mobile-search {
+            width: 100%;
+            margin-top: 0.7rem;
+        }
+
+        .offcanvas {
+            background: #14101f;
+            color: var(--cv-text);
+        }
+
+        .btn-close {
+            filter: invert(1) grayscale(1);
+        }
+
+        @media (max-width: 1199.98px) {
+            .right-rail {
+                display: none;
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            :root {
+                --cv-navbar-height: 66px;
+            }
+
+            .left-rail {
+                position: static;
+            }
+
+            .app-shell {
+                padding-top: 0.9rem;
+            }
+
+            .desktop-search {
+                display: none;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .brand-mark span:last-child {
+                display: none;
+            }
+
+            .nav-icon-button {
+                width: 2.45rem;
+                height: 2.45rem;
+            }
+
+            .composer-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .post-actions button {
+                font-size: 0.9rem;
+            }
+
+            .post-stats {
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+
+            .profile-identity {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+                gap: 0.7rem;
+                margin-top: -3.45rem;
+                padding-inline: 1rem;
+            }
+
+            .profile-text {
+                padding-top: 0;
+            }
+
+            .avatar-xl {
+                width: 7.2rem;
+                height: 7.2rem;
+                font-size: 2.2rem;
+                border-width: 4px;
+            }
+
+            .profile-actions {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .profile-actions .btn {
+                flex: 1 1 auto;
+            }
+
+            .profile-cover {
+                height: 12.5rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .app-shell {
+                padding-inline: 0.55rem;
+            }
+
+            .surface-card {
+                border-radius: 0.85rem;
+            }
+
+            .post-header,
+            .post-body,
+            .comments-preview,
+            .composer,
+            .right-panel {
+                padding-inline: 0.78rem;
+            }
+
+            .suggestion-row {
+                align-items: flex-start;
+            }
+
+            .suggestion-row .btn {
+                min-width: auto;
+                padding-inline: 0.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar principal do protótipo. -->
+    <nav class="navbar fixed-top prototype-navbar">
+        <div class="container-fluid gap-2 px-3 px-lg-4">
+            <button class="nav-icon-button d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Abrir menu">
+                <i class="bi bi-list"></i>
+            </button>
+
+            <button type="button" class="brand-mark" data-route="feed" aria-label="Abrir feed">
+                <span><i class="bi bi-broadcast-pin"></i></span>
+                <span>CyberFeed</span>
+            </button>
+
+            <form class="nav-search desktop-search mx-auto" role="search">
+                <i class="bi bi-search"></i>
+                <input type="search" aria-label="Pesquisar na rede" placeholder="Pesquisar no Void">
+            </form>
+
+            <div class="d-flex align-items-center gap-2 ms-auto">
+                <button type="button" class="nav-icon-button" data-route="feed" aria-label="Início">
+                    <i class="bi bi-house-door-fill"></i>
+                </button>
+                <button type="button" class="nav-icon-button" aria-label="Mensagens">
+                    <i class="bi bi-chat-dots-fill"></i>
+                </button>
+                <button type="button" class="nav-icon-button" aria-label="Notificações">
+                    <i class="bi bi-bell-fill"></i>
+                    <span class="notification-dot">3</span>
+                </button>
+                <div class="dropdown">
+                    <button class="avatar-button" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Abrir menu do usuário">
+                        <span class="avatar avatar-sm" data-avatar="Trix">TX</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button class="dropdown-item" type="button" data-route="profile" data-profile-target="me"><i class="bi bi-person-circle me-2"></i>Meu perfil</button></li>
+                        <li><button class="dropdown-item" type="button"><i class="bi bi-gear me-2"></i>Configurações</button></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><button class="dropdown-item" type="button"><i class="bi bi-box-arrow-right me-2"></i>Sair</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <form class="nav-search mobile-search d-lg-none" role="search">
+                <i class="bi bi-search"></i>
+                <input type="search" aria-label="Pesquisar na rede" placeholder="Buscar">
+            </form>
+        </div>
+    </nav>
+
+    <!-- Menu móvel. -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title fs-5" id="mobileMenuLabel">Navegação</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="side-profile">
+                <span class="avatar avatar-md" data-avatar="Trix">TX</span>
+                <div class="min-w-0">
+                    <strong>Trix Veyra</strong>
+                    <div class="muted-text small">@trix_voidrunner</div>
+                </div>
+            </div>
+            <nav class="nav flex-column side-menu" aria-label="Menu social móvel">
+                <button type="button" class="nav-link active" data-route="feed"><i class="bi bi-grid-1x2-fill"></i>Feed</button>
+                <button type="button" class="nav-link" data-route="profile" data-profile-target="me"><i class="bi bi-person-fill"></i>Meu perfil</button>
+                <button type="button" class="nav-link"><i class="bi bi-people-fill"></i>Amigos</button>
+                <button type="button" class="nav-link"><i class="bi bi-collection-fill"></i>Grupos</button>
+                <button type="button" class="nav-link"><i class="bi bi-bookmark-star-fill"></i>Salvos</button>
+                <button type="button" class="nav-link"><i class="bi bi-calendar-event-fill"></i>Eventos</button>
+            </nav>
+        </div>
+    </div>
+
+    <main class="app-shell">
+        <!-- Feed global. -->
+        <section class="app-view" data-view="feed" aria-live="polite">
+            <div class="row g-4">
+                <aside class="col-xl-3 d-none d-lg-block">
+                    <div class="left-rail">
+                        <section class="surface-card">
+                            <button type="button" class="side-profile w-100 text-start border-0 bg-transparent" data-route="profile" data-profile-target="me">
+                                <span class="avatar avatar-md" data-avatar="Trix">TX</span>
+                                <span class="min-w-0">
+                                    <strong class="d-block">Trix Veyra</strong>
+                                    <span class="muted-text small">@trix_voidrunner</span>
+                                </span>
+                            </button>
+                            <nav class="nav flex-column side-menu" aria-label="Menu social">
+                                <button type="button" class="nav-link active" data-route="feed"><i class="bi bi-grid-1x2-fill"></i>Feed</button>
+                                <button type="button" class="nav-link" data-route="profile" data-profile-target="me"><i class="bi bi-person-fill"></i>Meu perfil</button>
+                                <button type="button" class="nav-link"><i class="bi bi-people-fill"></i>Amigos</button>
+                                <button type="button" class="nav-link"><i class="bi bi-collection-fill"></i>Grupos</button>
+                                <button type="button" class="nav-link"><i class="bi bi-bookmark-star-fill"></i>Salvos</button>
+                                <button type="button" class="nav-link"><i class="bi bi-calendar-event-fill"></i>Eventos</button>
+                            </nav>
+                        </section>
+                    </div>
+                </aside>
+
+                <section class="col-12 col-lg-8 col-xl-6">
+                    <article class="surface-card composer">
+                        <div class="composer-top">
+                            <button type="button" class="avatar-button" data-route="profile" data-profile-target="me" aria-label="Abrir perfil de Trix">
+                                <span class="avatar avatar-md" data-avatar="Trix">TX</span>
+                            </button>
+                            <button type="button" class="composer-prompt text-start">No que você está pensando?</button>
+                        </div>
+                        <div class="composer-actions">
+                            <button type="button"><i class="bi bi-image-fill me-2 text-success"></i>Foto</button>
+                            <button type="button"><i class="bi bi-camera-reels-fill me-2 text-info"></i>Vídeo</button>
+                            <button type="button"><i class="bi bi-emoji-smile-fill me-2 text-warning"></i>Sentimento</button>
+                        </div>
+                    </article>
+
+                    <div class="vstack gap-3 mt-3" data-post-list></div>
+                </section>
+
+                <aside class="col-lg-4 col-xl-3 d-none d-lg-block">
+                    <div class="right-rail">
+                        <section class="surface-card right-panel">
+                            <div class="panel-title">
+                                <h2>Sugestões</h2>
+                                <span class="muted-text small">Hoje</span>
+                            </div>
+                            <div data-suggestions></div>
+                        </section>
+
+                        <section class="surface-card right-panel">
+                            <div class="panel-title">
+                                <h2>Contatos online</h2>
+                                <i class="bi bi-three-dots muted-text"></i>
+                            </div>
+                            <div data-contacts></div>
+                        </section>
+
+                        <section class="surface-card right-panel">
+                            <div class="panel-title">
+                                <h2>Em alta</h2>
+                                <i class="bi bi-lightning-charge-fill text-warning"></i>
+                            </div>
+                            <div>
+                                <span class="trend-pill"><i class="bi bi-hash"></i>voidrun</span>
+                                <span class="trend-pill"><i class="bi bi-hash"></i>neoncraft</span>
+                                <span class="trend-pill"><i class="bi bi-hash"></i>bosswatch</span>
+                                <span class="trend-pill"><i class="bi bi-people"></i>Guilda Sintética</span>
+                            </div>
+                        </section>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Perfil visual demonstrativo. -->
+        <section class="app-view" data-view="profile" aria-live="polite" hidden>
+            <div class="profile-page">
+                <div class="profile-back-row">
+                    <button type="button" class="btn soft-action" data-route="feed">
+                        <i class="bi bi-arrow-left"></i>Voltar ao Feed
+                    </button>
+                </div>
+
+                <article class="surface-card profile-hero">
+                    <div class="profile-cover">
+                        <img data-profile-cover alt="">
+                    </div>
+                    <div class="profile-identity">
+                        <span class="avatar avatar-xl" data-profile-avatar>TX</span>
+                        <div class="profile-text">
+                            <h1 data-profile-name>Trix Veyra</h1>
+                            <p data-profile-username>@trix_voidrunner</p>
+                            <p data-profile-bio>Exploradora do Void, caçadora de bugs dimensionais e fã de neon frio.</p>
+                            <p class="small" data-profile-count>1.284 amigos</p>
+                        </div>
+                        <div class="profile-actions">
+                            <button type="button" class="btn primary-action" data-profile-primary-action>Editar perfil</button>
+                            <button type="button" class="btn soft-action" aria-label="Mais opções"><i class="bi bi-three-dots"></i></button>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs profile-tabs" id="profileTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="posts-tab" data-bs-toggle="tab" data-bs-target="#posts-pane" type="button" role="tab" aria-controls="posts-pane" aria-selected="true">Publicações</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about-pane" type="button" role="tab" aria-controls="about-pane" aria-selected="false">Sobre</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="friends-tab" data-bs-toggle="tab" data-bs-target="#friends-pane" type="button" role="tab" aria-controls="friends-pane" aria-selected="false">Amigos</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="photos-tab" data-bs-toggle="tab" data-bs-target="#photos-pane" type="button" role="tab" aria-controls="photos-pane" aria-selected="false">Fotos</button>
+                        </li>
+                    </ul>
+                </article>
+
+                <div class="tab-content profile-content" id="profileTabsContent">
+                    <section class="tab-pane fade show active" id="posts-pane" role="tabpanel" aria-labelledby="posts-tab" tabindex="0">
+                        <div class="row g-4">
+                            <aside class="col-lg-4">
+                                <section class="surface-card right-panel">
+                                    <div class="panel-title">
+                                        <h2>Apresentação</h2>
+                                    </div>
+                                    <ul class="intro-list">
+                                        <li><i class="bi bi-stars"></i><span data-profile-intro>Exploradora do Void, caçadora de bugs dimensionais e fã de neon frio.</span></li>
+                                        <li><i class="bi bi-geo-alt-fill"></i><span>Setor Aurora, CyberVoid</span></li>
+                                        <li><i class="bi bi-person-hearts"></i><span data-profile-followers>1.284 amigos</span></li>
+                                    </ul>
+                                </section>
+                                <section class="surface-card right-panel">
+                                    <div class="panel-title">
+                                        <h2>Fotos</h2>
+                                        <span class="muted-text small">12</span>
+                                    </div>
+                                    <div class="mini-photo-grid" data-profile-mini-photos></div>
+                                </section>
+                            </aside>
+                            <section class="col-lg-8">
+                                <article class="surface-card composer mb-3">
+                                    <div class="composer-top">
+                                        <span class="avatar avatar-md" data-avatar="Trix">TX</span>
+                                        <button type="button" class="composer-prompt text-start">Criar uma publicação</button>
+                                    </div>
+                                </article>
+                                <div class="vstack gap-3" data-profile-posts></div>
+                            </section>
+                        </div>
+                    </section>
+
+                    <section class="tab-pane fade" id="about-pane" role="tabpanel" aria-labelledby="about-tab" tabindex="0">
+                        <article class="surface-card right-panel">
+                            <div class="panel-title">
+                                <h2>Sobre</h2>
+                            </div>
+                            <ul class="about-list">
+                                <li><i class="bi bi-house-heart-fill"></i><span>Vive em Setor Aurora</span></li>
+                                <li><i class="bi bi-briefcase-fill"></i><span>Operadora de missões na Guilda Void Runner</span></li>
+                                <li><i class="bi bi-mortarboard-fill"></i><span>Estudou criptografia visual na Academia Neon</span></li>
+                                <li><i class="bi bi-calendar-check-fill"></i><span>Entrou no CyberVoid em 2026</span></li>
+                                <li><i class="bi bi-link-45deg"></i><span>cybervoid.local/trix</span></li>
+                            </ul>
+                        </article>
+                    </section>
+
+                    <section class="tab-pane fade" id="friends-pane" role="tabpanel" aria-labelledby="friends-tab" tabindex="0">
+                        <article class="surface-card right-panel">
+                            <div class="panel-title">
+                                <h2>Amigos</h2>
+                                <span class="muted-text small">148 visíveis</span>
+                            </div>
+                            <div class="friends-grid" data-profile-friends></div>
+                        </article>
+                    </section>
+
+                    <section class="tab-pane fade" id="photos-pane" role="tabpanel" aria-labelledby="photos-tab" tabindex="0">
+                        <article class="surface-card right-panel">
+                            <div class="panel-title">
+                                <h2>Fotos</h2>
+                                <span class="muted-text small">Grade visual</span>
+                            </div>
+                            <div class="photos-grid" data-profile-photos></div>
+                        </article>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dados fictícios para demonstrar o visual.
+        const currentUserId = "trix";
+        const users = {
+            trix: {
+                id: "trix",
+                name: "Trix Veyra",
+                username: "@trix_voidrunner",
+                initials: "TX",
+                bio: "Exploradora do Void, caçadora de bugs dimensionais e fã de neon frio.",
+                count: "1.284 amigos",
+                coverLabel: "Setor Aurora",
+                colorA: "#e5007d",
+                colorB: "#7c3aed"
+            },
+            kael: {
+                id: "kael",
+                name: "Kael Nox",
+                username: "@kael_nox",
+                initials: "KN",
+                bio: "Arquiteto de rotas, colecionador de ruídos bonitos e guia de zonas instáveis.",
+                count: "842 seguidores",
+                coverLabel: "Distrito Prisma",
+                colorA: "#22d3ee",
+                colorB: "#7c3aed"
+            },
+            mira: {
+                id: "mira",
+                name: "Mira Byte",
+                username: "@mirabyte",
+                initials: "MB",
+                bio: "Curadora de sinais, fotógrafa do neon e observadora de criaturas corrompidas.",
+                count: "2.034 amigos",
+                coverLabel: "Núcleo Violeta",
+                colorA: "#e5007d",
+                colorB: "#22d3ee"
+            },
+            orion: {
+                id: "orion",
+                name: "Orion Vale",
+                username: "@orionvale",
+                initials: "OV",
+                bio: "Analista de tendências do Void e fundador do grupo Circuito Aberto.",
+                count: "679 seguidores",
+                coverLabel: "Ponte Ciano",
+                colorA: "#7c3aed",
+                colorB: "#22d3ee"
+            }
+        };
+
+        const posts = [
+            {
+                id: "p1",
+                author: "trix",
+                time: "agora mesmo",
+                text: "Testei uma nova rota entre o distrito Ciano e o corredor Violeta. O mapa ainda pulsa quando a energia muda, mas a travessia está mais estável.",
+                reactions: 128,
+                comments: 18,
+                shares: 6,
+                commentsPreview: [
+                    { author: "Kael", initials: "KN", text: "Essa rota vai economizar metade do caminho." }
+                ]
+            },
+            {
+                id: "p2",
+                author: "mira",
+                time: "24 min",
+                text: "Registro visual do terminal depois da chuva elétrica. O Void fica quase calmo quando os painéis param de falhar.",
+                reactions: 264,
+                comments: 43,
+                shares: 15,
+                media: [{ label: "Terminal Neon", colorA: "#e5007d", colorB: "#22d3ee" }]
+            },
+            {
+                id: "p3",
+                author: "kael",
+                time: "1 h",
+                text: "Pequeno relatório da patrulha: três sinais estranhos, nenhuma entidade hostil e uma sequência de portas que abriu sozinha. Normal para terça-feira.",
+                reactions: 91,
+                comments: 12,
+                shares: 4,
+                media: [
+                    { label: "Mapa", colorA: "#7c3aed", colorB: "#22d3ee" },
+                    { label: "Portal", colorA: "#e5007d", colorB: "#7c3aed" },
+                    { label: "Sensor", colorA: "#22d3ee", colorB: "#0d0a14" },
+                    { label: "Rota", colorA: "#f97316", colorB: "#e5007d" }
+                ]
+            }
+        ];
+
+        const suggestions = ["kael", "mira", "orion"];
+        const contacts = ["mira", "kael", "orion"];
+        const profilePhotos = [
+            ["Pulso", "#e5007d", "#7c3aed"],
+            ["Torre", "#22d3ee", "#14101f"],
+            ["Rastro", "#7c3aed", "#22d3ee"],
+            ["Néon", "#e5007d", "#0d0a14"],
+            ["Grade", "#22d3ee", "#e5007d"],
+            ["Void", "#7c3aed", "#14101f"]
+        ];
+
+        let activeProfileId = currentUserId;
+
+        function createSvg(label, colorA, colorB, wide = true) {
+            const width = wide ? 1200 : 700;
+            const height = wide ? 675 : 700;
+            const svg = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+                    <defs>
+                        <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="${colorA}"/>
+                            <stop offset="1" stop-color="${colorB}"/>
+                        </linearGradient>
+                        <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
+                            <path d="M54 0H0V54" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="2"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="#0d0a14"/>
+                    <rect width="100%" height="100%" fill="url(#g)" opacity="0.92"/>
+                    <rect width="100%" height="100%" fill="url(#grid)" opacity="0.42"/>
+                    <circle cx="${width * 0.78}" cy="${height * 0.24}" r="${height * 0.2}" fill="rgba(255,255,255,0.16)"/>
+                    <circle cx="${width * 0.18}" cy="${height * 0.78}" r="${height * 0.24}" fill="rgba(0,0,0,0.18)"/>
+                    <path d="M0 ${height * 0.78} C ${width * 0.22} ${height * 0.58}, ${width * 0.42} ${height * 0.94}, ${width} ${height * 0.66} L ${width} ${height} L 0 ${height} Z" fill="rgba(13,10,20,0.36)"/>
+                    <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle" font-family="Segoe UI, Arial, sans-serif" font-size="${wide ? 70 : 48}" font-weight="800" fill="#f5f1ff">${label}</text>
+                </svg>`;
+            return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+        }
+
+        function userAvatar(userId, sizeClass = "avatar-md") {
+            const user = users[userId];
+            return `<span class="avatar ${sizeClass}" data-avatar="${user.name}">${user.initials}</span>`;
+        }
+
+        function renderPosts(target, list) {
+            target.innerHTML = list.map(function (post) {
+                const author = users[post.author];
+                const mediaHtml = renderMedia(post.media);
+                const commentsHtml = renderComments(post);
+
+                return `
+                    <article class="surface-card post-card" data-post-id="${post.id}">
+                        <header class="post-header">
+                            <button type="button" class="avatar-button" data-route="profile" data-profile-target="${author.id}" aria-label="Abrir perfil de ${author.name}">
+                                ${userAvatar(author.id, "avatar-md")}
+                            </button>
+                            <button type="button" class="author-button" data-route="profile" data-profile-target="${author.id}">
+                                <strong class="d-block">${author.name}</strong>
+                                <span class="muted-text small">${author.username} · ${post.time}</span>
+                            </button>
+                            <button type="button" class="post-menu" aria-label="Mais opções"><i class="bi bi-three-dots"></i></button>
+                        </header>
+                        <div class="post-body">
+                            <p>${post.text}</p>
+                        </div>
+                        ${mediaHtml}
+                        <div class="post-stats">
+                            <span><span class="reaction-mark"><i class="bi bi-heart-fill"></i></span><span data-reaction-count>${post.reactions}</span> reações</span>
+                            <span>${post.comments} comentários · ${post.shares} compartilhamentos</span>
+                        </div>
+                        <div class="post-actions">
+                            <button type="button" data-like-button><i class="bi bi-heart me-2"></i>Curtir</button>
+                            <button type="button" data-comment-button><i class="bi bi-chat me-2"></i>Comentar</button>
+                            <button type="button"><i class="bi bi-send me-2"></i>Compartilhar</button>
+                        </div>
+                        ${commentsHtml}
+                    </article>`;
+            }).join("");
+        }
+
+        function renderMedia(media) {
+            if (!media || media.length === 0) {
+                return "";
+            }
+
+            if (media.length === 1) {
+                const item = media[0];
+                return `<div class="post-media single"><img src="${createSvg(item.label, item.colorA, item.colorB)}" alt="${item.label}"></div>`;
+            }
+
+            return `
+                <div class="post-media grid">
+                    ${media.map(function (item) {
+                        return `<div class="grid-shot"><img src="${createSvg(item.label, item.colorA, item.colorB, false)}" alt="${item.label}"></div>`;
+                    }).join("")}
+                </div>`;
+        }
+
+        function renderComments(post) {
+            const previews = post.commentsPreview || [];
+            const previewHtml = previews.map(function (comment) {
+                return `
+                    <div class="comment-row">
+                        <span class="avatar avatar-sm">${comment.initials}</span>
+                        <div class="comment-bubble">
+                            <strong class="d-block small">${comment.author}</strong>
+                            <span class="small">${comment.text}</span>
+                        </div>
+                    </div>`;
+            }).join("");
+
+            return `
+                <div class="comments-preview">
+                    ${previewHtml}
+                    <div class="comment-box" data-comment-box hidden>
+                        <input type="text" aria-label="Escrever comentário" placeholder="Escreva um comentário visual...">
+                    </div>
+                </div>`;
+        }
+
+        function renderSuggestions() {
+            const target = document.querySelector("[data-suggestions]");
+            target.innerHTML = suggestions.map(function (id) {
+                const user = users[id];
+                return `
+                    <div class="suggestion-row">
+                        <button type="button" class="avatar-button" data-route="profile" data-profile-target="${id}" aria-label="Abrir perfil de ${user.name}">
+                            ${userAvatar(id, "avatar-sm")}
+                        </button>
+                        <button type="button" class="author-button" data-route="profile" data-profile-target="${id}">
+                            <span class="suggestion-name d-block">${user.name}</span>
+                            <span class="muted-text small">${user.username}</span>
+                        </button>
+                        <button type="button" class="btn btn-sm soft-action">Adicionar</button>
+                    </div>`;
+            }).join("");
+        }
+
+        function renderContacts() {
+            const target = document.querySelector("[data-contacts]");
+            target.innerHTML = contacts.map(function (id) {
+                const user = users[id];
+                return `
+                    <button type="button" class="contact-row w-100 border-0 bg-transparent text-start" data-route="profile" data-profile-target="${id}">
+                        <span class="online-wrap">
+                            ${userAvatar(id, "avatar-sm")}
+                            <span class="online-dot" aria-hidden="true"></span>
+                        </span>
+                        <span class="contact-name">${user.name}</span>
+                    </button>`;
+            }).join("");
+        }
+
+        function renderProfilePhotos() {
+            const photoMarkup = profilePhotos.map(function (item) {
+                return `<img src="${createSvg(item[0], item[1], item[2], false)}" alt="${item[0]}">`;
+            }).join("");
+
+            document.querySelector("[data-profile-mini-photos]").innerHTML = photoMarkup.slice(0);
+            document.querySelector("[data-profile-photos]").innerHTML = photoMarkup;
+        }
+
+        function renderFriends() {
+            const target = document.querySelector("[data-profile-friends]");
+            target.innerHTML = Object.values(users).filter(function (user) {
+                return user.id !== activeProfileId;
+            }).map(function (user) {
+                return `
+                    <button type="button" class="friend-card text-start" data-route="profile" data-profile-target="${user.id}">
+                        ${userAvatar(user.id, "avatar-sm")}
+                        <span>${user.name}</span>
+                    </button>`;
+            }).join("");
+        }
+
+        // Fallback visual para ambientes sem Bootstrap carregado.
+        function activateProfilePostsTab() {
+            const firstTab = document.querySelector("#posts-tab");
+
+            if (window.bootstrap && window.bootstrap.Tab) {
+                window.bootstrap.Tab.getOrCreateInstance(firstTab).show();
+                return;
+            }
+
+            document.querySelectorAll("#profileTabs .nav-link").forEach(function (tab) {
+                const active = tab === firstTab;
+                tab.classList.toggle("active", active);
+                tab.setAttribute("aria-selected", active ? "true" : "false");
+            });
+
+            document.querySelectorAll("#profileTabsContent .tab-pane").forEach(function (pane) {
+                const active = pane.id === "posts-pane";
+                pane.classList.toggle("show", active);
+                pane.classList.toggle("active", active);
+            });
+        }
+
+        function closeMobileMenu() {
+            const offcanvasElement = document.querySelector("#mobileMenu");
+
+            if (window.bootstrap && window.bootstrap.Offcanvas) {
+                const offcanvas = window.bootstrap.Offcanvas.getInstance(offcanvasElement);
+                if (offcanvas) {
+                    offcanvas.hide();
+                }
+                return;
+            }
+
+            offcanvasElement.classList.remove("show");
+            offcanvasElement.style.visibility = "hidden";
+        }
+
+        function openMobileMenu() {
+            const offcanvasElement = document.querySelector("#mobileMenu");
+
+            if (window.bootstrap && window.bootstrap.Offcanvas) {
+                window.bootstrap.Offcanvas.getOrCreateInstance(offcanvasElement).show();
+                return;
+            }
+
+            offcanvasElement.classList.add("show");
+            offcanvasElement.style.visibility = "visible";
+        }
+
+        function activateTab(tabButton) {
+            if (!tabButton || (window.bootstrap && window.bootstrap.Tab)) {
+                return;
+            }
+
+            const target = document.querySelector(tabButton.dataset.bsTarget);
+            if (!target) {
+                return;
+            }
+
+            document.querySelectorAll("#profileTabs .nav-link").forEach(function (tab) {
+                const active = tab === tabButton;
+                tab.classList.toggle("active", active);
+                tab.setAttribute("aria-selected", active ? "true" : "false");
+            });
+
+            document.querySelectorAll("#profileTabsContent .tab-pane").forEach(function (pane) {
+                const active = pane === target;
+                pane.classList.toggle("show", active);
+                pane.classList.toggle("active", active);
+            });
+        }
+
+        // Alternância visual entre feed e perfil.
+        function showView(viewName) {
+            document.querySelectorAll("[data-view]").forEach(function (view) {
+                view.hidden = view.dataset.view !== viewName;
+            });
+
+            document.querySelectorAll(".side-menu .nav-link").forEach(function (item) {
+                const isProfile = item.dataset.route === "profile";
+                const isFeed = item.dataset.route === "feed";
+                item.classList.toggle("active", (viewName === "feed" && isFeed) || (viewName === "profile" && isProfile));
+            });
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        function openProfile(profileId) {
+            activeProfileId = users[profileId] ? profileId : currentUserId;
+            const user = users[activeProfileId];
+            const isCurrentUser = activeProfileId === currentUserId;
+
+            document.querySelector("[data-profile-cover]").src = createSvg(user.coverLabel, user.colorA, user.colorB);
+            document.querySelector("[data-profile-name]").textContent = user.name;
+            document.querySelector("[data-profile-username]").textContent = user.username;
+            document.querySelector("[data-profile-bio]").textContent = user.bio;
+            document.querySelector("[data-profile-count]").textContent = user.count;
+            document.querySelector("[data-profile-intro]").textContent = user.bio;
+            document.querySelector("[data-profile-followers]").textContent = user.count;
+
+            const avatar = document.querySelector("[data-profile-avatar]");
+            avatar.textContent = user.initials;
+            avatar.setAttribute("data-avatar", user.name);
+
+            const primaryAction = document.querySelector("[data-profile-primary-action]");
+            primaryAction.textContent = isCurrentUser ? "Editar perfil" : "Adicionar amigo";
+
+            const profilePosts = posts.filter(function (post) {
+                return post.author === activeProfileId;
+            });
+            renderPosts(document.querySelector("[data-profile-posts]"), profilePosts.length ? profilePosts : [posts[0]]);
+            renderFriends();
+
+            activateProfilePostsTab();
+            showView("profile");
+        }
+
+        // Interações demonstrativas dos posts.
+        function handleDocumentClick(event) {
+            const openMenuButton = event.target.closest('[data-bs-target="#mobileMenu"]');
+            if (openMenuButton && !(window.bootstrap && window.bootstrap.Offcanvas)) {
+                openMobileMenu();
+            }
+
+            const closeMenuButton = event.target.closest('[data-bs-dismiss="offcanvas"]');
+            if (closeMenuButton && !(window.bootstrap && window.bootstrap.Offcanvas)) {
+                closeMobileMenu();
+            }
+
+            const tabButton = event.target.closest('[data-bs-toggle="tab"]');
+            if (tabButton) {
+                activateTab(tabButton);
+            }
+
+            const routeButton = event.target.closest("[data-route]");
+            if (routeButton) {
+                const route = routeButton.dataset.route;
+                if (route === "feed") {
+                    showView("feed");
+                }
+
+                if (route === "profile") {
+                    openProfile(routeButton.dataset.profileTarget || currentUserId);
+                }
+
+                closeMobileMenu();
+            }
+
+            const likeButton = event.target.closest("[data-like-button]");
+            if (likeButton) {
+                const post = likeButton.closest("[data-post-id]");
+                const counter = post.querySelector("[data-reaction-count]");
+                const liked = likeButton.classList.toggle("is-liked");
+                const icon = likeButton.querySelector("i");
+                icon.className = liked ? "bi bi-heart-fill me-2" : "bi bi-heart me-2";
+                counter.textContent = String(Number(counter.textContent) + (liked ? 1 : -1));
+            }
+
+            const commentButton = event.target.closest("[data-comment-button]");
+            if (commentButton) {
+                const post = commentButton.closest("[data-post-id]");
+                const box = post.querySelector("[data-comment-box]");
+                box.hidden = !box.hidden;
+                if (!box.hidden) {
+                    box.querySelector("input").focus();
+                }
+            }
+        }
+
+        function init() {
+            renderPosts(document.querySelector("[data-post-list]"), posts);
+            renderSuggestions();
+            renderContacts();
+            renderProfilePhotos();
+            renderFriends();
+            document.addEventListener("click", handleDocumentClick);
+        }
+
+        init();
+    </script>
+</body>
+</html>

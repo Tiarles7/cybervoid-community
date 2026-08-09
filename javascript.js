@@ -44,17 +44,112 @@ const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');
 
 if (menuToggle && navLinks) {
+    const menuIcons = {
+        'index.html': 'M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10.5Z',
+        'cyberfeed.html': 'M4 8.5a8 8 0 0 1 16 0h-2a6 6 0 0 0-12 0H4Zm4 0a4 4 0 0 1 8 0h-2a2 2 0 0 0-4 0H8Zm4 3.5a3 3 0 0 1 3 3v4a3 3 0 0 1-6 0v-4a3 3 0 0 1 3-3Z',
+        'void-runner.html': 'M7 9h10a5 5 0 0 1 4.8 3.6l.7 2.6A3 3 0 0 1 17.3 18L15 15H9l-2.3 3A3 3 0 0 1 1.5 15.2l.7-2.6A5 5 0 0 1 7 9Zm1 3H6v2H4v2h2v2h2v-2h2v-2H8v-2Zm8 2.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Zm3 3a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5Z',
+        'contato.html': 'M3 6h18a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Zm1.8 2 7.2 5 7.2-5H4.8Zm15.2 8V9.9l-8 5.5-8-5.5V16h16Z'
+    };
+
+    const currentPage = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+
+    function criarIconeMenu(pageKey) {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+
+        svg.setAttribute('class', 'menu-icon');
+        svg.setAttribute('viewBox', '0 0 24 24');
+        svg.setAttribute('aria-hidden', 'true');
+        svg.setAttribute('focusable', 'false');
+        path.setAttribute('d', menuIcons[pageKey] || menuIcons['index.html']);
+        svg.appendChild(path);
+        return svg;
+    }
+
+    function prepararLinkMenu(link) {
+        const href = link.getAttribute('href') || '';
+        const pageKey = (href.split('/').pop() || 'index.html').split('?')[0].toLowerCase();
+        const label = link.textContent.trim();
+
+        link.querySelectorAll('.menu-icon').forEach(function (icon) {
+            icon.remove();
+        });
+
+        link.textContent = '';
+        link.prepend(criarIconeMenu(pageKey));
+
+        const labelSpan = document.createElement('span');
+        labelSpan.textContent = label;
+        link.appendChild(labelSpan);
+
+        if (pageKey === currentPage || (currentPage === '' && pageKey === 'index.html')) {
+            link.setAttribute('aria-current', 'page');
+        } else {
+            link.removeAttribute('aria-current');
+        }
+    }
+
+    function prepararDrawerGlobal() {
+        if (!navLinks.querySelector('.drawer-heading')) {
+            const headingItem = document.createElement('li');
+            const headingText = document.createElement('span');
+
+            headingItem.className = 'drawer-heading';
+            headingText.textContent = 'Navegação';
+            headingItem.appendChild(headingText);
+            navLinks.prepend(headingItem);
+        }
+
+        navLinks.querySelectorAll('a').forEach(prepararLinkMenu);
+    }
+
+    function sincronizarMenuGlobal() {
+        const isOpen = navLinks.classList.contains('ativo');
+
+        document.body.classList.toggle('site-menu-open', isOpen);
+        menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+        menuToggle.setAttribute('title', isOpen ? 'Fechar menu' : 'Abrir menu');
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+
+    function fecharMenuGlobal() {
+        menuToggle.classList.remove('ativo');
+        navLinks.classList.remove('ativo');
+        sincronizarMenuGlobal();
+    }
+
+    prepararDrawerGlobal();
+    sincronizarMenuGlobal();
+
     menuToggle.addEventListener('click', function () {
         menuToggle.classList.toggle('ativo');
         navLinks.classList.toggle('ativo');
+        sincronizarMenuGlobal();
     });
 
     const links = navLinks.querySelectorAll('a');
     links.forEach(function (link) {
         link.addEventListener('click', function () {
-            menuToggle.classList.remove('ativo');
-            navLinks.classList.remove('ativo');
+            fecharMenuGlobal();
         });
+    });
+
+    document.addEventListener('click', function (evento) {
+        if (!document.body.classList.contains('site-menu-open')) {
+            return;
+        }
+
+        if (evento.target.closest('#nav-links') || evento.target.closest('#menu-toggle')) {
+            return;
+        }
+
+        fecharMenuGlobal();
+    });
+
+    document.addEventListener('keydown', function (evento) {
+        if (evento.key === 'Escape' && document.body.classList.contains('site-menu-open')) {
+            fecharMenuGlobal();
+        }
     });
 }
 
